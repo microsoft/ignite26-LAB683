@@ -37,25 +37,38 @@ Fill in the sections below yourself, then:
 
 Set up a demonstration VM to explore runtime protection for local AI agents. See Microsoft Defender block a threat, then use threat hunting and investigation to understand what happened.
 
+#### Version 1 delivery model
+
+Version 1 runs in a Windows VM prepared for this lab in Skillable Studio. The lab administrator configures the VM image, access, Microsoft Defender for Endpoint connection, Microsoft Agent 365 experience, and sanctioned demonstration assets in Skillable Studio; attendees do not provision those values from this repository.
+
+Use only the assigned lab VM and the presenter-provided, sanctioned demonstration flow. Do not use production tenants, production credentials, or unapproved payloads.
+
 ### 🚀 Getting started
 
 #### In a guided session
 
 If you're following along during a live session:
 
-1. Set up the Windows VM and required local AI tooling
-2. Configure Microsoft Defender for Endpoint and the local AI agent protection workflow
-3. Open [`instructions/`](instructions/README.md) when this session includes
-   attendee step-by-step guidance
+1. Launch the assigned LAB683 environment in Skillable
+2. Open the prepared Windows VM and confirm the required tooling is ready
+3. Follow the [attendee instructions](instructions/README.md)
 
 #### On your own
 
 If you're learning at your own pace:
 
-1. Clone this repository
-2. Provision the VM and install the required tools
-3. Follow the session guidance in [`instructions/`](instructions/README.md), or
-   use the linked docs-site entry point when this repository uses that pattern
+1. Launch an assigned LAB683 environment in Skillable
+2. Open the prepared Windows VM; do not substitute a personal or production environment
+3. Follow the [attendee instructions](instructions/README.md)
+
+#### Session resources
+
+- [Attendee instructions](instructions/README.md)
+- [Architecture](docs/architecture.md)
+- [Skillable Studio setup](docs/skillable-setup.md)
+- [Infrastructure notes](infra/README.md)
+- [Source materials](src/README.md)
+- [Data materials](data/README.md)
 
 ### 🎯 Learning outcomes
 
