@@ -35,7 +35,7 @@ Fill in the sections below yourself, then:
 ## 🔥LAB683: Secure local AI agents with end-to-end threat protection
 ### Session description
 
-Add your session description here. Keep it concise — 2-3 sentences about what attendees will learn and why it matters.
+Set up a demonstration VM to explore runtime protection for local AI agents. See Microsoft Defender block a threat, then use threat hunting and investigation to understand what happened.
 
 ### 🚀 Getting started
 
@@ -43,8 +43,8 @@ Add your session description here. Keep it concise — 2-3 sentences about what 
 
 If you're following along during a live session:
 
-1. Step 1
-2. Step 2
+1. Set up the Windows VM and required local AI tooling
+2. Configure Microsoft Defender for Endpoint and the local AI agent protection workflow
 3. Open [`instructions/`](instructions/README.md) when this session includes
    attendee step-by-step guidance
 
@@ -53,7 +53,7 @@ If you're following along during a live session:
 If you're learning at your own pace:
 
 1. Clone this repository
-2. Set up your environment
+2. Provision the VM and install the required tools
 3. Follow the session guidance in [`instructions/`](instructions/README.md), or
    use the linked docs-site entry point when this repository uses that pattern
 
@@ -61,15 +61,18 @@ If you're learning at your own pace:
 
 By the end of this session, you will be able to:
 
-- Outcome 1
-- Outcome 2
-- Outcome 3
+- Configure a Windows VM environment for local AI agent runtime protection testing
+- Observe Microsoft Defender block or contain malicious AI-agent behavior at runtime
+- Investigate alerts and perform threat hunting to understand the attack path and impact
 
 ### 💻 Technologies used
 
-- Technology 1
-- Technology 2
-- Technology 3
+- Microsoft Defender for Endpoint
+- Microsoft Agent 365
+- Windows virtual machine
+- GitHub Copilot
+- GitHub Copilot CLI
+- Visual Studio Code with the GitHub Copilot extension
 
 ### 📚 Continue your learning
 
@@ -95,28 +98,23 @@ copilot plugin install microsoftdocs/mcp
 ```
 
 **VS Code** — One-click install:  
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Learn_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=microsoft-learn&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Learn_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=microsoftdocs%2Fmcp)
 
 For more information, visit the [Learn MCP Server repo](https://aka.ms/learnmcp).
 
 ### 👥 Content owners
 
-<!-- TODO: Add yourself as a content owner
-1. Change the src in the image tag to {your github url}.png
-2. Change INSERT NAME HERE to your name
-3. Change the github url in the final href to your url. -->
-
 <table>
 <tr>
-    <td align="center"><a href="http://github.com/yourGitHubHandle">
-        <img src="https://github.com/yourGitHubHandle.png" width="100px;" alt="INSERT NAME HERE"/><br />
-        <sub><b>INSERT NAME HERE</b></sub></a><br />
-            <a href="https://github.com/yourGitHubHandle" title="talk">📢</a>
+    <td align="center"><a href="http://github.com/j0shbregman">
+        <img src="https://github.com/j0shbregman.png" width="100px;" alt="Josh Bregman"/><br />
+        <sub><b>Josh Bregman</b></sub></a><br />
+            <a href="https://github.com/j0shbregman" title="talk">📢</a>
     </td>
 </tr></table>
 
 ### ⚖️ Trademarks
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general). Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 
 Any use of third-party trademarks or logos are subject to those third-party's policies.
