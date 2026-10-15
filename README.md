@@ -35,13 +35,15 @@ Fill in the sections below yourself, then:
 ## 🔥LAB683: Secure local AI agents with end-to-end threat protection
 ### Session description
 
-Set up a demonstration VM to explore runtime protection for local AI agents. See Microsoft Defender block a threat, then use threat hunting and investigation to understand what happened.
+Investigate three prepared local AI agent security scenarios in Microsoft Defender: Windows cross-prompt injection (XPIA), Windows agent misalignment, and macOS runtime prompt injection. Follow alerts, agent context, process evidence, device events, and timelines, with Advanced Hunting used where it helps answer the investigation question.
 
-#### Version 1 delivery model
+#### Lab delivery model
 
-Version 1 runs in a Windows VM prepared for this lab in Skillable Studio. The lab administrator configures the VM image, access, Microsoft Defender for Endpoint connection, Microsoft Agent 365 experience, and sanctioned demonstration assets in Skillable Studio; attendees do not provision those values from this repository.
+This is a 75-minute, L300, browser-first investigation lab. Attendees use individually assigned accounts in the team's dedicated lab tenant and investigate pre-seeded evidence. Skillable is the intended delivery and secure credential-assignment experience; the lab team must validate its configuration before delivery.
 
-Use only the assigned lab VM and the presenter-provided, sanctioned demonstration flow. Do not use production tenants, production credentials, or unapproved payloads.
+No attendee endpoint provisioning, local agent installation, live attack generation, or Sentinel setup is required. Response actions, including isolation, remediation, Live Response, and policy changes, are out of scope. Optional extra credit observes Agent 365 elements of the investigation; it is not required to complete the lab.
+
+**Content status:** Review draft, not a delivery-ready manual. Exact scenario entry points, evidence windows, screenshots, and attendee permissions still require validation in the LAB683 tenant. The macOS scenario has an October 30, 2026 readiness gate; MCP/tool-chain compromise is the fallback if the macOS investigation is not ready.
 
 ### 🚀 Getting started
 
@@ -50,7 +52,7 @@ Use only the assigned lab VM and the presenter-provided, sanctioned demonstratio
 If you're following along during a live session:
 
 1. Launch the assigned LAB683 environment in Skillable
-2. Open the prepared Windows VM and confirm the required tooling is ready
+2. Open the supplied browser experience and sign in with your assigned lab account
 3. Follow the [attendee instructions](instructions/README.md)
 
 #### On your own
@@ -58,12 +60,13 @@ If you're following along during a live session:
 If you're learning at your own pace:
 
 1. Launch an assigned LAB683 environment in Skillable
-2. Open the prepared Windows VM; do not substitute a personal or production environment
+2. Use the supplied browser experience and assigned lab account, not a personal or production tenant
 3. Follow the [attendee instructions](instructions/README.md)
 
 #### Session resources
 
 - [Attendee instructions](instructions/README.md)
+- [Authoring and readiness plan](docs/content-plan.md)
 - [Architecture](docs/architecture.md)
 - [Skillable Studio setup](docs/skillable-setup.md)
 - [Infrastructure notes](infra/README.md)
@@ -74,18 +77,16 @@ If you're learning at your own pace:
 
 By the end of this session, you will be able to:
 
-- Configure a Windows VM environment for local AI agent runtime protection testing
-- Observe Microsoft Defender block or contain malicious AI-agent behavior at runtime
-- Investigate alerts and perform threat hunting to understand the attack path and impact
+- Investigate Windows XPIA evidence and distinguish a recorded prevention outcome from an attempted attack
+- Reconstruct Windows agent misalignment by correlating alerts, process evidence, and device timeline activity
+- Investigate macOS runtime activity and explain the evidence and platform limitations shown in the prepared scenario
 
 ### 💻 Technologies used
 
 - Microsoft Defender for Endpoint
-- Microsoft Agent 365
-- Windows virtual machine
-- GitHub Copilot
-- GitHub Copilot CLI
-- Visual Studio Code with the GitHub Copilot extension
+- Microsoft Defender portal and Advanced Hunting
+- Windows and macOS local AI agent evidence
+- Microsoft Agent 365 (optional observational extra credit)
 
 ### 📚 Continue your learning
 

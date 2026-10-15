@@ -1,10 +1,7 @@
-# Docs
+# Review the lab design
 
-<!-- IGNITE TEMPLATE PLACEHOLDER: remove this folder when the session needs no additional documentation. -->
+These documents support content owners and lab operators. Attendees should start with the [investigation instructions](../instructions/README.md).
 
-Use this folder for supporting documentation such as reference material and
-architecture/context.
-
-If this repository intentionally uses MkDocs or another docs-site pattern,
-attendee instructions can remain here. Link the attendee entry point clearly
-from the root README.
+- [Architecture](architecture.md): browser-first delivery, shared evidence, and scope boundaries.
+- [Content plan](content-plan.md): scenario design, readiness gates, and exact-step validation.
+- [Skillable setup](skillable-setup.md): controlled account delivery and attendee rehearsal.

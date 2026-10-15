@@ -1,55 +1,45 @@
-# Architecture
+# Lab architecture
 
-## Version 1 overview
+LAB683 uses browser-based investigations of pre-seeded evidence in the team's dedicated Microsoft Defender lab tenant. Each attendee receives an individual user account. Devices and scenario evidence are prepared by the lab team, not provisioned or attacked by attendees.
 
-LAB683 Version 1 uses Skillable to provide one isolated, preconfigured Windows VM per learner. The VM provides the environment for the local AI agent workflow, Microsoft Defender for Endpoint protection, Microsoft Agent 365 experience, and sanctioned demonstration assets used during the lab.
+This delivery model supersedes the earlier per-learner Windows VM and live-attack scaffold.
 
-This repository is the source of truth for attendee instructions and setup documentation. It does not contain the Skillable lab profile, temporary credentials, tenant identifiers, production configuration, or real attack payloads.
+## Components and ownership
 
-A shared Microsoft tenant supplies Microsoft Defender portal access and the protection policies required by the lab. Tenant-specific access, identifiers, policies, and onboarding material remain in the approved administration systems and are not stored in this repository.
-
-## Components
-
-| Component | Purpose | Configuration location |
+| Component | Purpose | Owner responsibility |
 |---|---|---|
-| Skillable Studio lab profile | Assigns and controls the attendee lab experience | Skillable Studio |
-| Windows VM | Hosts the local AI tooling and sanctioned scenario | VM image selected in Skillable Studio |
-| Local AI agent tooling | Runs the guided local agent workflow | VM image and lab instructions |
-| Microsoft Defender for Endpoint | Observes and protects the assigned VM at runtime | Lab security environment and VM onboarding |
-| Microsoft Agent 365 | Supports the session's agent protection experience | Lab environment |
-| Investigation and hunting experience | Presents alerts, timelines, and approved hunting views | Lab security environment |
-| This repository | Provides attendee steps, architecture context, and delivery notes | Git commits |
+| Skillable experience | Delivers instructions, browser access, and intended secure account assignment | Validate account delivery, sign-in, session cleanup, and capacity |
+| Dedicated lab tenant | Hosts the shared investigation experience | Prepare access, permissions, evidence retention, and refresh |
+| Prepared Windows endpoints | Supply XPIA and misalignment evidence | Generate approved evidence before delivery |
+| Prepared macOS endpoint | Supplies the third runtime investigation if ready | Validate the exact build, telemetry, and portal journey |
+| Microsoft Defender | Presents alerts, incidents, device events, timelines, agent context, and hunting | Verify each scenario with an ordinary attendee account |
+| Agent 365 context | Adds optional identity, registry, and risk observations | Validate each supported pivot without changing policy |
+| GitHub repository | Holds reusable instructions and approved sanitized assets | Keep credentials, private identifiers, and raw telemetry out of commits |
 
-## Version 1 scope
+## Required investigation flow
 
-Version 1 does not include:
+1. Launch the supplied lab experience and sign in with an assigned account.
+2. Review the prepared Windows XPIA alert and recorded prevention evidence.
+3. Reconstruct Windows agent misalignment through incident and endpoint evidence.
+4. Investigate macOS runtime activity, subject to the readiness decision.
+5. Compare evidence and confidence across the scenarios.
+6. Optionally observe available Agent 365 investigation context.
+7. Sign out and end the lab session.
 
-- Cloud Slice
-- Learner-created Azure resources
-- Automated tenant provisioning
-- Secrets, credentials, onboarding packages, or private tenant details in the repository
-- Production deployment or use of production environments
+The required path is Defender-led. Agent 365 extra credit does not require a separate administrative configuration exercise.
 
-## Activity flow
+## Shared-state boundaries
 
-1. Skillable assigns an attendee an isolated Windows VM.
-2. The attendee confirms that the local AI tooling and security connection are ready.
-3. The attendee runs only the presenter-provided, sanctioned demonstration flow.
-4. Microsoft Defender for Endpoint observes the runtime activity and applies the configured protection.
-5. The attendee uses the lab-provided investigation and hunting experience to review the resulting evidence.
-6. The attendee ends or resets the lab through Skillable.
+Attendee accounts are individual; that does not imply devices or incidents are private to one attendee. The required activities are observational and must not alter shared incident, endpoint, identity, or policy state.
 
-## Trust boundaries
+Isolation, remediation, Live Response, indicators, policy changes, and live response demonstrations are out of scope. Attendees do not install agents, onboard endpoints, provision Azure resources, configure Sentinel, or generate attacks.
 
-- **Attendee boundary:** The attendee works only inside the assigned VM and uses temporary access supplied by the lab.
-- **Skillable boundary:** Skillable Studio controls VM assignment, timing, connection, reset, and teardown.
-- **Security boundary:** The lab's Microsoft Defender for Endpoint and Microsoft Agent 365 configuration belongs to the authorized demonstration environment, not a learner's personal or production environment.
-- **Repository boundary:** Git commits contain documentation and approved session materials only. They must not contain credentials, tenant identifiers, onboarding packages, private portal links, or sensitive telemetry.
+## Readiness boundaries
 
-## Configuration ownership
+- Validate the third scenario by **October 30, 2026**. It needs a usable macOS runtime investigation, not merely discovered-agent inventory.
+- Keep MCP/tool-chain compromise as the replacement if macOS is not ready. Publish one final third-scenario path before delivery.
+- A working Windows agent entity does not establish macOS support or universal identity correlation.
+- Source agent IDs, Entra agent IDs, and other identifiers must not be treated as interchangeable.
+- Exact LAB683 links and evidence windows belong in controlled delivery material. Sanitized screenshots can be committed only after approval.
 
-The [Skillable Studio setup guide](skillable-setup.md) lists administrator-owned values. Those values remain in Skillable Studio or the approved lab administration system. Repository updates should include only reusable instructions and approved, non-sensitive session assets.
-
-## Safety model
-
-The scenario is a sanctioned defensive demonstration. Attendees use only the supplied benign simulation or approved demonstration asset, stop after the expected protection action, and investigate the generated evidence. The repository intentionally provides no real attack payload and no steps for bypassing security controls.
+See the [content plan](content-plan.md) for remaining authoring and validation work.

@@ -1,107 +1,43 @@
-# Skillable Studio setup
+# Prepare the Skillable investigation experience
 
-This guide is for the LAB683 lab administrator. It describes the Version 1 delivery configuration without placing environment-specific or sensitive values in the repository.
+This owner guide describes the intended browser-first delivery model. It does not claim that secure account assignment or the Skillable profile is already configured.
 
-Configuration is completed in Skillable Studio, not by repository commits. The repository documents the required learner experience; an administrator applies and publishes the corresponding settings in Skillable Studio.
+## Prepare access
 
-## Keep configuration in the correct location
+1. Select the approved LAB683 delivery profile with the Skillable team. A per-learner attack VM is not a requirement.
+2. Provide an individual account for each attendee in the team's dedicated lab tenant.
+3. Configure secure credential assignment through the controlled lab experience and validate the actual token or assignment mechanism. Do not reuse another lab's administrator credential token.
+4. Assign only the access needed for the investigation tasks. Validate that the account can read the intended evidence and run the approved hunting queries.
+5. Define session sign-out, credential expiration, browser-session cleanup, and support procedures outside GitHub.
 
-| Store in Skillable Studio or the approved administration system | Commit to this repository |
-|---|---|
-| Lab profile and template identifiers | Attendee instructions |
-| VM image selection and version | Architecture documentation |
-| Temporary learner credentials | Non-sensitive source and data usage notes |
-| Tenant and subscription identifiers | Approved links between repository documents |
-| Microsoft Defender for Endpoint onboarding material | No secrets, credentials, onboarding packages, or private identifiers |
-| Device group, tag, policy, and role assignments | No real attack payloads |
-| Private portal entry points | Safe, sanctioned-demo wording |
-| Sanctioned demonstration asset placement and access controls | A description of where an approved asset is expected |
+Keep passwords, account rosters, tenant identifiers, profile identifiers, onboarding packages, and private portal links in approved administration systems.
 
-Do not copy administrator-owned values into Markdown, source files, issue comments, or commit history.
+## Prepare the instructions
 
-## Understand the setup
+1. Link the [attendee path](../instructions/README.md).
+2. Supply controlled scenario references: incident or alert entry point, device and agent reference, evidence time window, and any approved hunting query.
+3. Set the required activity duration to 75 minutes and label Agent 365 observations as optional extra credit.
+4. Explain that evidence is pre-seeded and shared. Learners do not run attacks, change incident state, or perform response actions.
+5. Provide a clear help path for sign-in failures, unavailable evidence, or missing permissions.
 
-A Lab Profile defines what a learner launches and how the lab behaves. For Version 1, create or update a Lab Profile in Skillable Studio that provides one isolated Windows VM to each learner. Select an approved custom image when the lab requires software and security configuration beyond the available base Windows image.
+Do not guess Skillable template syntax. Add product-specific credential tokens and page separators only after confirming the delivery profile's supported format.
 
-Use the Skillable Studio fields and options available to your organization. This guide intentionally does not name tenant-specific screens, subscriptions, identifiers, or credentials.
+## Prepare the evidence
 
-## Complete the lab profile
+1. Prepare Windows XPIA and Windows misalignment evidence before the session.
+2. Validate macOS runtime evidence against the October 30, 2026 gate in the [content plan](content-plan.md).
+3. Confirm evidence remains available through all event sessions. Account for rolling time filters, retention, and delayed ingestion.
+4. Prepare approved static or recorded fallback evidence where needed, clearly labeled as such.
+5. Validate optional Agent 365 pivots independently of the required Defender path.
 
-- TODO (lab administrator): Record the Skillable lab profile identifier in the approved administration system.
-- TODO (lab administrator): Select an approved Windows VM or custom image and record its version in the approved administration system.
-- TODO (lab administrator): Set the lab duration, startup allowance, extension policy, and teardown behavior.
-- TODO (lab administrator): Configure the attendee connection method and temporary credential delivery.
-- TODO (lab administrator): Configure the reset path and confirm that each learner receives an isolated starting state.
+## Rehearse as an attendee
 
-## Add learner instructions
+1. Launch a clean assignment using an ordinary attendee account, not an administrator session.
+2. Confirm the account opens the correct tenant and all supplied scenario references resolve.
+3. Walk every instruction with Playwright in read-only mode and record actual navigation, visible labels, expected evidence, and supported tabs.
+4. Verify all three investigation completion checks fit within the planned time.
+5. Confirm extra credit is observational and can be skipped without affecting completion.
+6. Sign out, end the assignment, and verify another attendee cannot inherit the previous browser session.
+7. Confirm account capacity and concurrent portal access with the delivery team before publishing.
 
-1. Add a short welcome that identifies LAB683 and explains that each learner receives an isolated, preconfigured Windows VM.
-2. Tell learners how to launch and connect to the VM using the connection method configured for the profile.
-3. Link or copy the approved learner path from the [attendee instructions](../instructions/README.md).
-4. Include the lab boundaries, sanctioned-scenario warning, expected Defender block event, investigation path, and cleanup steps.
-5. Keep tenant-specific URLs, identifiers, credentials, and support-only notes in controlled Skillable fields or the approved administration system.
-
-## Configure networking and access
-
-- Allow the VM to reach only the internet and Microsoft service endpoints required by Visual Studio Code, GitHub Copilot, GitHub Copilot CLI, the selected supported local AI agent, Microsoft Defender for Endpoint, and the Microsoft Defender portal.
-- Apply the approved proxy, firewall, DNS, and access configuration for the lab environment without documenting private values in this repository.
-- Provide the learner role only the Defender portal access needed to investigate the alert and perform the approved threat hunting.
-- Confirm that learners cannot reach production credentials, unrelated tenant resources, or another learner's VM.
-
-## Configure the VM lifecycle and reset
-
-- Start each assignment from the approved clean image or checkpoint.
-- Give each learner one isolated VM and prevent state from being shared between assignments.
-- Configure end-lab, expiration, teardown, and reset behavior according to the event's approved retention policy.
-- Verify that a reset removes learner activity, personal notes, cached sessions, temporary credentials, and scenario state before the next assignment.
-- Document the learner-visible reset action and the support escalation path in Skillable.
-
-## Prepare the security environment
-
-- TODO (lab administrator): Identify the authorized lab tenant or equivalent security environment outside this repository.
-- TODO (lab administrator): Onboard the VM image to Microsoft Defender for Endpoint using the approved administration process.
-- TODO (lab administrator): Assign the required protection policies, device group or tags, and attendee investigation permissions.
-- TODO (lab administrator): Configure the Microsoft Agent 365 experience required for the session.
-- TODO (lab administrator): Add the approved investigation portal entry point to the Skillable instructions or VM desktop.
-- TODO (lab administrator): Place the approved threat-hunting query in the controlled lab experience.
-
-Never commit an onboarding package, tenant identifier, access token, temporary password, private portal URL, or exported security data.
-
-## Prepare the VM
-
-- TODO (lab administrator): Install or stage the exact approved versions of the local AI tooling listed for the session.
-- TODO (lab administrator): Add clear desktop shortcuts for the local AI agent experience, security status, investigation entry point, and attendee instructions.
-- TODO (lab administrator): Place only the sanctioned demonstration asset in the controlled location expected by the lab flow.
-- TODO (lab administrator): Confirm that no production credentials, cached user profiles, or earlier learner data are present in the image.
-- TODO (lab administrator): Configure the expected starting state and a reliable reset checkpoint.
-
-## Configure the sanctioned scenario
-
-- TODO (lab administrator): Obtain approval for the demonstration asset and record the approving owner outside this repository.
-- TODO (lab administrator): Document the expected Microsoft Defender protection action and alert label in the controlled presenter notes.
-- TODO (lab administrator): Define the expected evidence and hunting result used to confirm success.
-- TODO (lab administrator): Add a stop condition so attendees end the scenario after the expected block or containment action.
-- TODO (lab administrator): Provide a fallback walkthrough that uses approved screenshots or prepared evidence if the live security signal is delayed.
-
-Do not provide real attack payloads or instructions for weakening, bypassing, or evading the configured controls.
-
-## Validate before publishing
-
-1. Use Skillable Studio's test-launch capability to start a clean assignment through the same path attendees will use.
-2. Confirm that the VM reaches the ready state within the planned startup allowance.
-3. Confirm that temporary credentials work only for the intended lab access.
-4. Verify that Visual Studio Code, the GitHub Copilot extension for VS Code, GitHub Copilot CLI, the selected supported local AI agent, Microsoft Defender for Endpoint status, and the Microsoft Agent 365 experience are ready.
-5. Run the sanctioned scenario once and confirm the expected protection action.
-6. Confirm that the alert and approved hunting evidence are available to the attendee role.
-7. End or reset the assignment and verify that attendee activity and credentials do not persist.
-8. Test the [attendee instructions](../instructions/README.md) from a clean assignment.
-
-## Publish and operate Version 1
-
-- TODO (lab administrator): Record the approved Skillable profile version and VM image version outside this repository.
-- TODO (lab administrator): Assign the presenter and lab-support escalation contacts in Skillable.
-- TODO (lab administrator): Define the response for VM startup, onboarding, portal-access, and delayed-alert failures.
-- TODO (lab administrator): Confirm the rollback profile or prior approved image before publishing Version 1.
-- TODO (lab administrator): Confirm teardown and retention behavior with the event and security owners.
-
-Repository commits update the documentation and approved session materials. A Skillable Studio administrator must separately publish profile, image, access, and environment changes.
+Publishing GitHub instructions does not publish a Skillable profile or configure tenant access.
