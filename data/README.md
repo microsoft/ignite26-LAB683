@@ -1,5 +1,7 @@
-# Data
+# Data materials
 
-<!-- IGNITE TEMPLATE PLACEHOLDER: remove this folder when the session needs no data files. -->
+No repository data files are required for the browser-first LAB683 investigation path. Scenario evidence is pre-seeded in the dedicated lab tenant.
 
-Use this folder for sample data or inputs required by the session.
+Do not commit credentials, tenant identifiers, endpoint telemetry, customer or production data, Microsoft Defender for Endpoint exports, or real attack payloads. Skillable-specific values and controlled demonstration assets remain in the Skillable Studio environment or another approved administration system.
+
+Approved sanitized screenshots may be added to `instructions/media/` during authoring. Do not substitute raw tenant exports for approved illustrations.
