@@ -43,7 +43,7 @@ This is a 75-minute, L300, browser-first investigation lab. Attendees use indivi
 
 No attendee endpoint provisioning, local agent installation, live attack generation, or Sentinel setup is required. Response actions, including isolation, remediation, Live Response, and policy changes, are out of scope. Optional extra credit observes Agent 365 elements of the investigation; it is not required to complete the lab.
 
-**Content status:** Review draft, not a delivery-ready manual. Exact scenario entry points, evidence windows, screenshots, and attendee permissions still require validation in the LAB683 tenant. The macOS scenario has an October 30, 2026 readiness gate; MCP/tool-chain compromise is the fallback if the macOS investigation is not ready.
+**Content status:** Tester draft with click-by-click guidance, sanitized evidence screenshots, and hunting queries. The recorded walkthrough and live/API evidence support the three investigations. Attendee permissions, controlled Skillable references, evidence retention, and full-session timing still require rehearsal. The macOS October 30, 2026 readiness gate remains; MCP/tool-chain compromise is the fallback if delivery readiness is not met.
 
 ### 🚀 Getting started
 
