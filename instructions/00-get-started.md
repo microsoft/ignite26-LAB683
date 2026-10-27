@@ -1,5 +1,5 @@
 ---
-title: Start the LAB683 investigations in Microsoft Defender
+title: Start discovering local AI agents in Microsoft Defender
 description: Discover local AI agents in Microsoft Defender, compare instance configuration, and correlate alert evidence with inventory before the LAB683 investigations.
 author: j0shbregman
 ms.author: j0shbregman
@@ -11,7 +11,7 @@ ai-usage: ai-generated
 #customer intent: As a SOC analyst, I want to access the prepared lab evidence so that I can investigate local AI agent threats.
 ---
 
-# Start the LAB683 investigations in Microsoft Defender
+# Start discovering local AI agents in Microsoft Defender
 
 Use your assigned Microsoft Defender account to discover local agents and run an inventory hunt before the three investigations. Check the prerequisites before signing in. The evidence already exists; you do not install software or generate attacks. Allow 5 minutes for sign-in and 12 minutes for discovery and hunting.
 
