@@ -9,8 +9,8 @@ This specification supersedes the earlier per-learner Windows VM build requireme
 1. Record approved endpoint builds, local agent versions, onboarding, protection configuration, and evidence-generation procedures in controlled operator material.
 2. Generate approved Windows XPIA evidence with a recorded prevention outcome.
 3. Generate Windows misalignment evidence that connects benign user intent to dangerous agent activity and attributable endpoint events.
-4. Prepare macOS runtime evidence and validate alert emission, agent attribution where available, and the attendee portal journey.
-5. Prepare the MCP/tool-chain compromise fallback if the macOS readiness gate is not met.
+4. Prepare the replacement macOS MCP execution-chain evidence and validate the incident, process/script chain, configuration observation time/scope, and per-target protection outcomes.
+5. Obtain owner approval and rehearse the exact Mac journey before delivery. If it cannot be delivered, prepare and rehearse an approved alternative rather than treating inventory alone as a completed investigation.
 6. Record stable scenario references and evidence windows in controlled delivery instructions.
 
 Use approved lab simulations only. Do not commit payloads, onboarding material, credentials, private identifiers, or raw endpoint exports.

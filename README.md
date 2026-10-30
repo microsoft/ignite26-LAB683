@@ -35,7 +35,7 @@ Fill in the sections below yourself, then:
 ## 🔥LAB683: Secure local AI agents with end-to-end threat protection
 ### Session description
 
-Investigate three prepared local AI agent security scenarios in Microsoft Defender: Windows cross-prompt injection (XPIA), Windows agent misalignment, and macOS runtime prompt injection. Follow alerts, agent context, process evidence, device events, and timelines, with Advanced Hunting used where it helps answer the investigation question.
+Investigate three prepared local AI agent security scenarios in Microsoft Defender: Windows cross-prompt injection (XPIA), Windows agent misalignment, and a macOS MCP execution chain. Follow alerts, agent context, process evidence, device events, and timelines, with Advanced Hunting used where it helps answer the investigation question.
 
 #### Lab delivery model
 
@@ -43,7 +43,7 @@ This is a 75-minute, L300, browser-first investigation lab. Attendees use indivi
 
 No attendee endpoint provisioning, local agent installation, live attack generation, or Sentinel setup is required. Response actions, including isolation, remediation, Live Response, and policy changes, are out of scope. Optional extra credit observes Agent 365 elements of the investigation; it is not required to complete the lab.
 
-**Content status:** Tester draft with click-by-click guidance, sanitized evidence screenshots, and hunting queries. The recorded walkthrough and live/API evidence support the three investigations. Attendee permissions, controlled Skillable references, evidence retention, and full-session timing still require rehearsal. The macOS October 30, 2026 readiness gate remains; MCP/tool-chain compromise is the fallback if delivery readiness is not met.
+**Content status:** Tester draft with investigation guidance, sanitized Windows evidence screenshots, and hunting queries. The final exercise now uses the October 30 macOS MCP investigation report instead of the earlier poisoned brief. It traces synthetic discovery, qualifies the MCP configuration link, and leaves prevention unestablished despite the portal's Blocked label. This content change does not approve macOS for event delivery: owner approval, attendee permissions, controlled references, evidence retention, and full-session timing still require rehearsal.
 
 ### 🚀 Getting started
 
@@ -79,7 +79,7 @@ By the end of this session, you will be able to:
 
 - Investigate Windows XPIA evidence and distinguish a recorded prevention outcome from an attempted attack
 - Reconstruct Windows agent misalignment by correlating alerts, process evidence, and device timeline activity
-- Investigate macOS runtime activity and explain the evidence and platform limitations shown in the prepared scenario
+- Trace a macOS MCP-related execution chain and distinguish configuration, observed behavior, and protection-outcome evidence
 
 ### 💻 Technologies used
 

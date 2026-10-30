@@ -39,7 +39,8 @@ Sign in to the prepared tenant and locate the reference values that keep your in
    | Device link and device ID | Distinguish devices that share a display name |
    | Start and end in UTC, plus portal-local equivalents | Apply the correct query and timeline windows |
    | Agent process ID and creation time | Select the correct process instance |
-   | Prompt locator: action type, time and text prefix | Distinguish similarly named prompt events |
+   | Prompt locator for Windows; script/timeline locator for macOS | Distinguish similarly named evidence events |
+   | macOS run-evidence reference and per-target action/result locator | Compare completed synthetic steps with the displayed protection status |
 
 5. If a value is missing, ask the instructor for it. Do not substitute your own tenant, the current time, or another device with the same name.
 6. If a view is inaccessible, ask the lab team to check access. Do not change permissions or use an administrator account.
@@ -106,7 +107,7 @@ AgentsInfo
 
 ## Correlate an alert with its discovered agent
 
-This second query will also be used in the Windows and Mac exercises.
+This second query supports alert-to-agent correlation. Its October 23 Mac baseline belongs to the earlier scenario, not the replacement MCP run.
 
 1. In a **New query** tab, paste the query below.
 2. Replace `<SCENARIO_ALERT_ID>` with the Windows XPIA alert ID from the reference sheet.
@@ -132,9 +133,9 @@ AlertEvidence
 ```
 
 4. Confirm the matching name and device. An empty profile side means the correlation was not established; ask for help rather than invent another join.
-5. Keep the query open for reuse with the Mac alert ID.
+5. Keep the query open. Reuse it for the replacement Mac alert only if the lab team has validated that run's `AIAgent` evidence and supplied its reference values; an empty join does not negate the observed process chain.
 
-**Expected result:** The prepared Windows XPIA and Mac alerts each correlate to a GitHub Copilot CLI profile through the source identity. Their matching **EntraAgentID** fields were empty when the evidence was checked. This does not prevent the required Defender investigations.
+**Expected result:** The prepared Windows XPIA alert correlates to a GitHub Copilot CLI profile through the source identity. The October 23 baseline also correlated the earlier Mac alert; both matching **EntraAgentID** fields were empty. That result does not validate correlation for the replacement MCP run, whose required path uses process and device/account evidence.
 
 ## Use the queries safely
 
