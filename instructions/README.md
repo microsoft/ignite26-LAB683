@@ -2,7 +2,7 @@
 
 Use this guided or self-paced path to investigate three prepared scenarios in Microsoft Defender. You review existing evidence rather than run attacks or change shared resources.
 
-**Tester draft:** These instructions now include observed click paths, prompt-panel screenshots, queries, and completion checks. Final attendee-role rehearsal, Skillable reference values, and refreshed-evidence checks remain required before event delivery.
+**Tester draft:** The Windows exercises include observed click paths, prompt-panel screenshots, queries, and completion checks. The replacement macOS exercise uses the October 30 MCP investigation report. Final attendee-role rehearsal, Skillable reference values, owner approval, and refreshed-evidence checks remain required before event delivery.
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ Do not use personal or production accounts. Do not put credentials in GitHub, sc
 | [Discover agents and run the hunting warm-up](00-get-started.md#discover-the-local-agents) | 12 minutes | Local-agent inventory and source-identity correlation |
 | [Investigate Windows XPIA](01-windows-xpia.md) | 17 minutes | Alert details and runtime prevention evidence |
 | [Investigate Windows agent misalignment](02-agent-misalignment.md) | 22 minutes | Incident, process evidence, device events and timeline |
-| [Investigate macOS runtime activity](03-macos-runtime.md) | 15 minutes | Poisoned campaign brief and detection-versus-prevention comparison |
+| [Investigate a macOS MCP execution chain](03-macos-runtime.md) | 15 minutes | Copilot-to-script chain, potential MCP configuration link, and protection-outcome limits |
 | [Compare findings](#compare-your-findings) | 4 minutes | Evidence-based conclusions across all three scenarios |
 | [Observe Agent 365 investigation context](optional-agent-365.md) | Extra credit | Available identity, registry, and risk context |
 
@@ -36,7 +36,7 @@ Do not isolate devices, quarantine files, stop processes, launch Live Response, 
 
 Reviewing existing protection and disruption evidence is allowed; initiating a response action is not.
 
-The Mac investigation now has alert, prompt, process, and inventory evidence. Its October 30 readiness gate still covers attendee access and delivery reliability. If it is not ready, the lab team must publish and rehearse the MCP/tool-chain compromise replacement before delivery.
+The replacement Mac investigation uses alert, process, script, and inventory reference evidence. It is not approval to include macOS in the event demo. The lab team must confirm the owner readiness decision and rehearse this exact path with ordinary attendee access before delivery. If it cannot be delivered, an owner-approved alternative must be authored and rehearsed; inventory-only browsing is not a substitute.
 
 ## Compare your findings
 
@@ -44,8 +44,8 @@ Use the closing discussion to distinguish the evidence and outcomes across the t
 
 1. For each scenario, identify the original task, suspicious behavior, agent/process attribution, and observed outcome.
 2. Explain why the Windows XPIA and misalignment exercises are separate runs even though the devices share a display name.
-3. Distinguish Windows prevention, recorded containment, and Mac detection. Do not treat these as equivalent outcomes.
-4. Identify one question Advanced Hunting answered and one rich prompt/response question that required the portal.
+3. Distinguish Windows prevention, recorded containment, and Mac detection with unestablished prevention. Explain why the Mac Blocked label alone does not prove discovery was prevented.
+4. Identify one question Advanced Hunting answered and one prompt or script question that required portal or labeled reference evidence. Explain why a current MCP configuration match is not proof of historical tool invocation.
 5. Sign out and end the Skillable session. Extra credit is optional and outside the required 75 minutes.
 
 ## Related content

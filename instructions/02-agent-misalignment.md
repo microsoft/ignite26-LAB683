@@ -160,4 +160,4 @@ You are finished when you can defend those conclusions without treating script n
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Investigate macOS runtime activity](03-macos-runtime.md)
+> [Investigate a macOS MCP execution chain](03-macos-runtime.md)

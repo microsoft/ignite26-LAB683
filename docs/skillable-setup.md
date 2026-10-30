@@ -25,7 +25,7 @@ Do not guess Skillable template syntax. Add product-specific credential tokens a
 ## Prepare the evidence
 
 1. Prepare Windows XPIA and Windows misalignment evidence before the session.
-2. Validate macOS runtime evidence against the October 30, 2026 gate in the [content plan](content-plan.md).
+2. Obtain the macOS delivery decision and validate the replacement MCP execution-chain path in the [content plan](content-plan.md). Supply approved run evidence, script-event locators, configuration observations, and exact action targets/results; do not reuse the earlier poisoned-brief references.
 3. Confirm evidence remains available through all event sessions. Account for rolling time filters, retention, and delayed ingestion.
 4. Prepare approved static or recorded fallback evidence where needed, clearly labeled as such.
 5. Validate optional Agent 365 pivots independently of the required Defender path.
