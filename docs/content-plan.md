@@ -128,6 +128,6 @@ Do not publish internal chat links, customer names, test-tenant identifiers, or 
 
 ## Related content
 
-- [Attendee path](../instructions/README.md)
+- [Attendee path](../README.md#end-to-end-lab-instructions)
 - [Discover local AI agents](https://learn.microsoft.com/en-us/defender-endpoint/discover-local-ai-agents)
 - [AI agent inventory](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/ai-agent-inventory)

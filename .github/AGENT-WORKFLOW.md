@@ -54,7 +54,7 @@ The agent groups open issues by risk, applies safe fixes with your permission, a
 
 For workshops, labs, and preday labs, attendee guidance is always both guided and self-paced. The agent does not ask that as a separate question.
 
-Attendee guidance normally lives in `instructions/`. Repositories intentionally built as MkDocs or other docs sites may keep attendee guidance in `docs/` when the root README links clearly to the entry point.
+Attendee guidance in this repository is consolidated in `README.md`, with a matching downloadable Word guide. In repositories with multi-page attendee paths, guidance normally lives in `instructions/`; intentional MkDocs or docs-site patterns may keep it in `docs/` when the root README links clearly to the entry point.
 
 
 ## Communication style

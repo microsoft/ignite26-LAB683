@@ -14,7 +14,7 @@ Keep passwords, account rosters, tenant identifiers, profile identifiers, onboar
 
 ## Prepare the instructions
 
-1. Link the [attendee path](../instructions/README.md).
+1. Link the [attendee path](../README.md#end-to-end-lab-instructions).
 2. Supply controlled scenario references: incident or alert entry point, device and agent reference, evidence time window, and any approved hunting query.
 3. Set the required activity duration to 75 minutes and label Agent 365 observations as optional extra credit.
 4. Explain that evidence is pre-seeded and shared. Learners do not run attacks, change incident state, or perform response actions.
