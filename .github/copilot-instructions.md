@@ -42,7 +42,8 @@ Plus:
 
 ## Folder purposes
 
-- `instructions/` — attendee step-by-step guidance
+- `README.md` — consolidated attendee step-by-step guidance
+- `instructions/media/` — attendee screenshot assets
 - `docs/` — supporting reference material and architecture/context
 - `src/`, `data/`, `infra/`, `.devcontainer/` — session-specific technical folders (optional)
 
