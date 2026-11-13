@@ -1,29 +1,3 @@
-## Before you're done
-
-This repo has been created for your Microsoft Ignite 2026 session. Here's how to get it ready.
-
-**Easiest path — use the agent (recommended):**
-
-- Open GitHub Copilot Chat and say `help me initialize repo`. The agent will walk you through getting the README populated.
-- When you're ready to publish, say `help me finalize repo`. The agent will clean up unused folders, validate everything, and remove this "Before you're done" section and other extra stuff that attendees don't need to see.
-- Curious how it works? Read the [agent workflow](.github/AGENT-WORKFLOW.md).
-
-**Doing it manually?**
-
-Fill in the sections below yourself, then:
-
-- Delete any placeholder folders you don't need (`data/`, `infra/`, etc.)
-- Delete this "Before you're done" section
-- Delete `.github/agents/`, `.github/tests/`, `.github/copilot-instructions.md`, and `.github/AGENT-WORKFLOW.md` — these are template tooling, not part of your published repo
-
-**Folder conventions:**
-
-- Attendee step-by-step guidance goes in `instructions/`. If you use MkDocs or a docs site instead, put it in `docs/` and link to it from this README.
-- Reference material and background reading go in `docs/`.
-- You can add a `.devcontainer/` folder if needed.
-
----
-
 <a name="start-building"></a>
 
 <p align="center">
@@ -83,10 +57,10 @@ By the end of this session, you will be able to:
 
 ### 💻 Technologies used
 
-- Microsoft Defender for Endpoint
-- Microsoft Defender portal and Advanced Hunting
-- Windows and macOS local AI agent evidence
-- Microsoft Agent 365 (optional observational extra credit)
+- [Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/)
+- [Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender-portal) and [Advanced Hunting](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview)
+- [Windows](https://learn.microsoft.com/en-us/windows/) and macOS local AI agent evidence
+- [Microsoft Agent 365](https://learn.microsoft.com/en-us/microsoft-agent-365/) (optional observational extra credit)
 
 ### 📚 Continue your learning
 
@@ -99,29 +73,12 @@ Pick your next step based on your learning style:
 | **[Microsoft Learn](https://aka.ms/ignite26-learn)** | Official documentation and guided learning paths on these topics |
 | **[Microsoft Foundry Community](https://aka.ms/MicrosoftFoundryDiscord-Ignite26)** | Connect with other learners and experts in our Discord community |
 
-### 🌟 Microsoft Learn MCP Server
-
-<!-- Remove this section if the Microsoft Learn MCP Server is not relevant to the session. -->
-
-The Microsoft Learn MCP Server gives your AI agent direct access to Microsoft's official documentation — grounded, up-to-date answers about the topics in this session.
-
-**GitHub Copilot CLI** — Install with:
-
-```shell
-copilot plugin install microsoftdocs/mcp
-```
-
-**VS Code** — One-click install:  
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Learn_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=microsoftdocs%2Fmcp)
-
-For more information, visit the [Learn MCP Server repo](https://aka.ms/learnmcp).
-
 ### 👥 Content owners
 
 <table>
 <tr>
-    <td align="center"><a href="http://github.com/j0shbregman">
-        <img src="https://github.com/j0shbregman.png" width="100px;" alt="Josh Bregman"/><br />
+    <td align="center"><a href="https://github.com/j0shbregman">
+        <img src="img/josh-bregman.jpg" width="100px;" alt="Josh Bregman"/><br />
         <sub><b>Josh Bregman</b></sub></a><br />
             <a href="https://github.com/j0shbregman" title="talk">📢</a>
     </td>
