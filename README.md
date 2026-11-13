@@ -77,8 +77,8 @@ Pick your next step based on your learning style:
 
 <table>
 <tr>
-    <td align="center"><a href="http://github.com/j0shbregman">
-        <img src="https://github.com/j0shbregman.png" width="100px;" alt="Josh Bregman"/><br />
+    <td align="center"><a href="https://github.com/j0shbregman">
+        <img src="img/josh-bregman.jpg" width="100px;" alt="Josh Bregman"/><br />
         <sub><b>Josh Bregman</b></sub></a><br />
             <a href="https://github.com/j0shbregman" title="talk">📢</a>
     </td>
