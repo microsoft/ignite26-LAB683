@@ -19,6 +19,14 @@ This is not another example of malicious instructions hidden in a document. Inve
 
 Use the portal to understand the alert and process relationships. Use hunting to turn a long command line into readable server/tool names and inspect captured code. You do not need to understand every command-line switch or write KQL from scratch.
 
+## Case brief
+
+- **Intended task:** Retrieve a campaign brief and summarize its deliverables and milestones.
+- **Reported concern:** The local MCP implementation leads to unexpected macOS automation and shell activity in a synthetic malicious-tool simulation.
+- **Investigation question:** Which agent, server, and tool are involved, what executes locally, and what do the captured scripts and protection events establish?
+
+**Protection lens:** A tool integration can run endpoint code, where behavioral protection still applies. Distinguish the AI/MCP alert's context from the related process-level protection evidence. Neither a suspicious tool name nor an alert title proves that information was stolen.
+
 ## Open the case
 
 1. Open the lab team's Mac MCP alert link, or locate **Suspected information theft by AI Agent through local MCP** in **Incidents & alerts** > **Alerts** around **November 2, 2026, 18:35 UTC**.

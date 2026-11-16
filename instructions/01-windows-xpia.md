@@ -5,7 +5,7 @@ author: j0shbregman
 ms.author: j0shbregman
 ms.service: microsoft-defender-xdr
 ms.topic: how-to
-ms.date: 11/15/2026
+ms.date: 11/16/2026
 ai-usage: ai-generated
 ---
 
@@ -16,6 +16,14 @@ An attacker does not have to control an agent's original user request to influen
 In this case, a Windows coding agent encounters an instruction requesting access to credential files and a transfer to an external destination. Your job is to determine what the instruction requested and what Defender did about it.
 
 **Your mission:** Read the attack in the portal, connect it to the agent process, and corroborate the protection result with one hunt. Allow 15 minutes. Complete [discovery](00-get-started.md) first.
+
+## Case brief
+
+- **Intended task:** Continue the user's work without treating instructions in retrieved content as new authorization.
+- **Reported concern:** An instruction asks the agent to read credential files, send their contents externally, and conceal the activity.
+- **Investigation question:** What did the instruction request, which agent encountered it, and what evidence establishes Defender's response?
+
+**Protection lens:** The AI-specific runtime protection illustrated here requires enablement for a supported agent and inspection method. You are investigating an existing recording, not enabling protection. Distinguish audit from block behavior and corroborate the reported outcome; see [how the lab's protection layers fit together](README.md#understand-the-protection-layers).
 
 ## Open the case
 

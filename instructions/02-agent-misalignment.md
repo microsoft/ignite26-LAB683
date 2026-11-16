@@ -5,7 +5,7 @@ author: j0shbregman
 ms.author: j0shbregman
 ms.service: microsoft-defender-xdr
 ms.topic: how-to
-ms.date: 11/15/2026
+ms.date: 11/16/2026
 ai-usage: ai-generated
 ---
 
@@ -16,6 +16,14 @@ ai-usage: ai-generated
 That request sounds ordinary. But how far should an agent go to complete it? In this investigation, compare the user's intent with the commands the agent launches, then use hunting to measure the behavior and assess the protection result.
 
 **Your mission:** Explain where the agent exceeds the task, what activity occurs, and what Defender prevents. Allow 20 minutes. Complete the [Windows prompt-injection investigation](01-windows-xpia.md) first.
+
+## Case brief
+
+- **Intended task:** Find the latest sales documents.
+- **Reported concern:** Activity around the task includes network scanning and attempted credential access.
+- **Investigation question:** Can you connect those actions to the agent, explain how they exceed the request, and establish what Defender detected or prevented?
+
+**Protection lens:** Network discovery and credential access are familiar attacker behaviors even when an agent initiates them. Endpoint detections provide a starting point; process relationships and the user's request establish their relevance to this agent investigation. This case does not require proving that prompt injection caused the behavior.
 
 ## Triage: why investigate this as agent activity?
 
