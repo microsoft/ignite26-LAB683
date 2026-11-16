@@ -1,54 +1,58 @@
-# Investigate local AI agent threats
+# Discover agents, investigate threats, and hunt for evidence
 
-Use this guided or self-paced path to investigate three prepared scenarios in Microsoft Defender. You review existing evidence rather than run attacks or change shared resources.
+An AI agent can turn a simple request into a sequence of file access, tool calls, and operating-system commands. As a security analyst, how do you tell useful automation from a security incident?
 
-**Tester draft:** The Windows exercises include observed click paths, prompt-panel screenshots, queries, and completion checks. The replacement macOS exercise uses the October 30 MCP investigation report. Final attendee-role rehearsal, Skillable reference values, owner approval, and refreshed-evidence checks remain required before event delivery.
+In this lab, investigate three stories in Microsoft Defender:
 
-## Prerequisites
+- **A malicious instruction:** Someone tries to make a Windows agent disclose credentials.
+- **A task that goes too far:** An agent asked to find sales documents starts scanning the network and attempting credential access.
+- **Code behind a tool:** A campaign-summary task on macOS leads to a local MCP server and unexpected script execution.
 
-- An assigned LAB683 environment and individual lab account supplied through the controlled lab experience.
-- Browser access to the lab tenant's Microsoft Defender portal.
-- Prepared scenario references supplied by the instructor or controlled lab instructions.
+You'll work in a preconfigured environment where the suspicious activity has already taken place. Follow the alerts, reconstruct the agents' actions, and explain how Defender responded.
 
-Do not use personal or production accounts. Do not put credentials in GitHub, screenshots, or investigation notes.
+## Your investigation path
 
-## Follow the investigation path
+Portal investigation and Advanced Hunting are complementary skills. In each exercise, start with a question, inspect the portal evidence, run a focused hunt, and explain what you found. You will interpret and adjust supplied queries, not write KQL from scratch.
 
-| Activity | Time | Primary experience |
-|---|---|---|
-| [Get started](00-get-started.md) | 5 minutes | Account and evidence orientation |
-| [Discover agents and run the hunting warm-up](00-get-started.md#discover-the-local-agents) | 12 minutes | Local-agent inventory and source-identity correlation |
-| [Investigate Windows XPIA](01-windows-xpia.md) | 17 minutes | Alert details and runtime prevention evidence |
-| [Investigate Windows agent misalignment](02-agent-misalignment.md) | 22 minutes | Incident, process evidence, device events and timeline |
-| [Investigate a macOS MCP execution chain](03-macos-runtime.md) | 15 minutes | Copilot-to-script chain, potential MCP configuration link, and protection-outcome limits |
-| [Compare findings](#compare-your-findings) | 4 minutes | Evidence-based conclusions across all three scenarios |
-| [Observe Agent 365 investigation context](optional-agent-365.md) | Extra credit | Available identity, registry, and risk context |
+| Activity | Time | Portal investigation | Advanced Hunting |
+|---|---|---|---|
+| [Sign in and get oriented](00-get-started.md#sign-in-to-the-lab) | 5 minutes | Open the assigned environment | Not required |
+| [Discover local agents](00-get-started.md#discover-the-local-agents) | 10 minutes | Inspect agent instances and their configuration | Compare inventory observations |
+| [Investigate Windows prompt injection](01-windows-xpia.md) | 15 minutes | Read the malicious prompt and follow the protection evidence | Corroborate the detection result |
+| [Investigate Windows agent misalignment](02-agent-misalignment.md) | 20 minutes | Compare the user's task with the agent's actions | Measure scanning and inspect credential-access protection |
+| [Investigate a macOS MCP execution chain](03-macos-runtime.md) | 20 minutes | Trace the task, tool process, and script activity | Reconstruct execution and inspect captured script content |
+| [Compare your findings](#compare-your-findings) | 5 minutes | Explain the three stories | Support each conclusion with evidence |
 
-1. Complete **Get started**, then follow the three scenarios in order.
-2. Keep findings in your own notes. Do not assign, classify, resolve, or otherwise edit shared incidents or alerts.
-3. During the closing comparison, identify the user intent, untrusted input or dangerous behavior, agent attribution, and observed outcome for each scenario.
-4. Complete extra credit only after the required investigations. It is outside the 75-minute schedule.
-5. Sign out of the lab account and end the Skillable session when finished.
+Optional [Agent 365 exploration](optional-agent-365.md) is outside the 75-minute path.
 
-## Stay within the lab scope
+## What you need
 
-Do not isolate devices, quarantine files, stop processes, launch Live Response, create indicators, or change policies. Response activities and response demonstrations are not part of this lab.
+- An assigned LAB683 environment and an individual lab account.
+- A browser with access to the lab's Microsoft Defender portal, local-agent inventory, alerts, device timelines, and Advanced Hunting.
+- The lab team's current scenario links if they have refreshed the recordings. Each exercise also explains how to locate the documented run by alert title and UTC time.
 
-Reviewing existing protection and disruption evidence is allowed; initiating a response action is not.
+Use the assigned lab account, not a personal or production tenant. A VM may host your browser, but you will not install agents, onboard endpoints, or generate attacks.
 
-The replacement Mac investigation uses alert, process, script, and inventory reference evidence. It is not approval to include macOS in the event demo. The lab team must confirm the owner readiness decision and rehearse this exact path with ordinary attendee access before delivery. If it cannot be delivered, an owner-approved alternative must be authored and rehearsed; inventory-only browsing is not a substitute.
+## Work safely in the shared environment
+
+Read existing evidence only. Do not assign, classify, resolve, or otherwise edit incidents or alerts. Do not isolate devices, run Live Response, submit files for analysis, change policies, or execute commands found in attack evidence.
+
+Keep credentials and sensitive identifiers out of screenshots and shared notes. The public instructions intentionally omit tenant IDs and direct tenant-specific links.
 
 ## Compare your findings
 
-Use the closing discussion to distinguish the evidence and outcomes across the three investigations.
+Complete this table in your own notes:
 
-1. For each scenario, identify the original task, suspicious behavior, agent/process attribution, and observed outcome.
-2. Explain why the Windows XPIA and misalignment exercises are separate runs even though the devices share a display name.
-3. Distinguish Windows prevention, recorded containment, and Mac detection with unestablished prevention. Explain why the Mac Blocked label alone does not prove discovery was prevented.
-4. Identify one question Advanced Hunting answered and one prompt or script question that required portal or labeled reference evidence. Explain why a current MCP configuration match is not proof of historical tool invocation.
-5. Sign out and end the Skillable session. Extra credit is optional and outside the required 75 minutes.
+| Question | Windows prompt injection | Windows misalignment | macOS MCP activity |
+|---|---|---|---|
+| What was the authorized task or attempted redirection? | | | |
+| What did the agent actually do? | | | |
+| Which portal evidence supports your explanation? | | | |
+| What did your hunt add? | | | |
+| What did Defender detect or prevent? What remains unknown? | | | |
 
-## Related content
+Explain one conclusion you could not safely draw from an alert title alone. Then sign out of the lab account and end your lab session.
 
-- [Lab architecture](../docs/architecture.md)
-- [Authoring and readiness plan](../docs/content-plan.md)
+## Start the lab
+
+[Sign in and discover the agents](00-get-started.md)

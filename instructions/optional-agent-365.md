@@ -21,15 +21,15 @@ Extend a completed investigation by observing available Microsoft Agent 365 elem
 - Use only the scenario and observational pivots approved by the lab team.
 - Allow additional time outside the required 75 minutes.
 
-**Tester draft:** The matching Windows and Mac profiles had empty **EntraAgentID** fields when checked. A separate registry/risk pivot is not yet validated for them. Complete the identity observation below; continue to registry only if the instructor supplies a verified observational link or approved labeled reference. Extra credit is not required for lab completion.
+An endpoint agent profile does not necessarily have an Entra agent identity or a verified registry relationship. Complete the identity observation below; continue to registry only if the instructor supplies a verified observational link or approved labeled reference. Extra credit is not required for lab completion.
 
 ## Inspect the available agent identity
 
-Compare displayed identities with the profile correlation you already established.
+Use the device and account context you established during discovery.
 
 1. Reopen **Assets** > **AI agents** > **Local agents** and select the scenario's instance, or use the instructor's verified agent-page link.
 2. Review the source agent identity and any Entra agent identity displayed.
-3. Compare this with **EntraAgentID** in the alert-to-profile hunting result. Note which values are present or absent. Do not treat source, Entra, session, or registry identifiers as interchangeable.
+3. Note which values are present or absent. The discovery query's `AgentId` identifies an inventory profile; do not treat it, a source agent ID, an Entra agent ID, a session ID, or a registry ID as interchangeable.
 4. Describe how the displayed identity relates to the endpoint investigation, using only the verified link.
 
 ## Observe registry and risk context

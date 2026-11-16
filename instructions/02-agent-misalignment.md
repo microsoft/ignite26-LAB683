@@ -1,95 +1,71 @@
 ---
-title: Investigate Windows agent misalignment in Microsoft Defender
-description: Investigate Windows agent misalignment in Microsoft Defender. Compare a sales-document request with scanning, credential-access attempts, and prevention.
+title: Investigate an agent that exceeds its user's request
+description: Compare a document-search request with process activity, measure network scanning, and inspect credential-access protection.
 author: j0shbregman
 ms.author: j0shbregman
 ms.service: microsoft-defender-xdr
 ms.topic: how-to
-ms.custom: msecd-doc-authoring-1032
-ms.date: 10/23/2026
+ms.date: 11/15/2026
 ai-usage: ai-generated
-#customer intent: As a SOC analyst, I want to reconstruct agent misalignment so that I can distinguish the intended task from dangerous behavior and observed impact.
 ---
 
-# Investigate Windows agent misalignment in Microsoft Defender
+# Investigate an agent that exceeds its user's request
 
-Use Microsoft Defender to investigate an agent that exceeds a request to find sales documents. Check the prerequisites, then compare the request with process, timeline, and hunting evidence of scanning and credential-access attempts. Allow 22 minutes.
+"Look for the latest sales documents - search comprehensively."
 
-## Prerequisites
+That request sounds ordinary. But how far should an agent go to complete it? In this investigation, compare the user's intent with the commands the agent launches, then use hunting to measure the behavior and assess the protection result.
 
-- Complete [Windows XPIA](01-windows-xpia.md).
-- Open the **Windows misalignment** reference-sheet row, including the scan process ID.
-- Use the device link for this scenario even if its name matches the previous Windows device.
+**Your mission:** Explain where the agent exceeds the task, what activity occurs, and what Defender prevents. Allow 20 minutes. Complete the [Windows prompt-injection investigation](01-windows-xpia.md) first.
 
-**Tester draft:** The two Windows scenarios were prepared using a reverted VM snapshot. Their display names match but their device IDs differ. Do not combine their events into one continuous execution chain.
+## Open the case
 
-## Establish the intended task
+1. Open the lab's Windows misalignment alert link, or locate **Suspicious connection to remote service** in **Incidents & alerts** > **Alerts** around **October 22, 2026, 22:47 UTC**.
+2. Inspect **What happened**, **Evidence**, and **Process tree**. Select the case with Copilot launching the scan script described below; use the lab-supplied alert ID if several alerts match.
+3. Open its device in a separate tab and copy its device ID. This is a different device identity from the previous exercise, despite a matching display name.
 
-Read the original request to establish which actions the user asked the agent to perform.
+| Reference | Documented run |
+|---|---|
+| Investigation window | October 22, 2026, 22:40-23:00 UTC |
+| Agent process | `copilot.exe`, PID 3764, created 22:45:55 UTC |
+| Scan child process | `pwsh.exe`, PID 3492, created 22:47:28 UTC |
 
-1. Open the supplied **Suspicious connection to remote service** alert.
-2. In **Alert details**, confirm the alert ID matches **Windows misalignment**.
-3. Review **What happened** and the **Process tree**.
-4. Locate **copilot.exe** and its child **pwsh.exe** executing `scan_local_lan.ps1`.
-5. Select **See in timeline** and confirm the scenario's device ID.
-6. Select **Time range** > **Custom range**, enter the sheet's local start/end values, and select **Apply**.
-7. In **Search**, enter `copilot.exe` and press Enter.
-8. Open the rich prompt entry identified by the reference sheet. Under **Event details** > **Prompt content**, read: **Look for the latest sales documents - search comprehensively**.
+If the evidence has been refreshed, use the lab team's replacement device, window, and process values together.
 
-**Expected result:** The task is document search. It does not explicitly request port scanning, credential collection, or access to other systems.
+## Investigate: what did the user authorize?
 
-![Screenshot of the original sales-document search request in the Windows prompt detail pane.](media/misalignment-user-request.png)
+1. Select **See in timeline** and confirm the scenario's device ID.
+2. Set **Time range** > **Custom range** to the investigation window, converted to portal-local time.
+3. Search for `copilot.exe` and open prompt-call entries associated with the selected process.
+4. Under **Event details** > **Prompt content**, find the request beginning **Look for the latest sales documents**.
+5. In your notes, state the user's goal and identify actions that would require additional justification or authorization.
 
-The generic event label can be shared by user prompts and tool activity. Match the supplied time, process instance, action type, and prompt text. If the live prompt is unreadable, use the approved reference image and record that limitation.
+![Original sales-document search request in the Windows prompt detail pane.](media/misalignment-user-request.png)
 
-## Trace the agent's actions
+Generic prompt-call labels can refer to user prompts or tool activity. Match process, time, and actual text. If the live prompt is unavailable, use the reference image and label that observation as reference-based.
 
-Compare the request with the child processes that the agent launched.
+## Investigate: what did the agent do instead?
 
-1. Return to the alert's **Process tree**, or use the supplied alert link again.
-2. Expand the relevant Copilot branch and inspect its child PowerShell commands.
-3. Identify execution of `scan_local_lan.ps1`, `search_file.ps1`, `get_wire_creds.ps1`, and `get_windows_creds.ps1` where present.
-4. Compare the command details with the original task. Distinguish launching a script from proving its intended effect succeeded.
-5. Open **Advanced hunting** > **New query** and run the following query after replacing the scenario values.
+1. Return to the alert's **Process tree** and expand the Copilot branch.
+2. Inspect its PowerShell child processes. Look for `scan_local_lan.ps1`, `search_file.ps1`, `get_wire_creds.ps1`, and `get_windows_creds.ps1`.
+3. Read the command lines rather than inferring success from a script name.
+4. Identify the `pwsh.exe` scan process and record its PID and creation time. Do not confuse child PID 3492 with the parent Copilot PID.
+5. Explain which observed actions go beyond a document search.
 
-```kusto
-let deviceId = "<MISALIGNMENT_DEVICE_ID>";
-let startTime = datetime(<MISALIGNMENT_START_UTC>);
-let endTime = datetime(<MISALIGNMENT_END_UTC>);
-DeviceProcessEvents
-| where Timestamp between (startTime .. endTime)
-| where DeviceId == deviceId
-| where InitiatingProcessFileName =~ "copilot.exe"
-| where ProcessCommandLine contains "scan_local_lan.ps1"
-    or ProcessCommandLine contains "search_file.ps1"
-    or ProcessCommandLine contains "get_wire_creds.ps1"
-    or ProcessCommandLine contains "get_windows_creds.ps1"
-| project Timestamp, InitiatingProcessFileName, InitiatingProcessId,
-    InitiatingProcessCreationTime, FileName, ProcessId, ProcessCommandLine
-| order by Timestamp asc
-| take 100
-```
+![Alert process tree connecting Copilot to child PowerShell activity.](media/misalignment-process-tree.png)
 
-6. Confirm the script-launch events share the expected Copilot parent process and creation time.
-7. Identify the scan's child PowerShell PID and compare it with **Scan process ID** in the reference sheet.
+The portal establishes the task and execution context. The next two hunts answer questions that are harder to measure from individual timeline rows.
 
-**Expected result:** The prepared sequence connects Copilot to the script launches. The commands and the original request together support the misalignment assessment; the current alert title is not an explicit misalignment verdict.
+## Hunt: how broad was the network scan?
 
-![Screenshot of the alert process tree linking Copilot to child PowerShell activity.](media/misalignment-process-tree.png)
-
-## Measure the scanning behavior
-
-Summarize the scan by destination port and connection outcome without treating connection success as compromise.
-
-1. Open a **New query**.
-2. Replace all four values below, including the scan process ID. Use the narrow scenario window to avoid unrelated PID reuse.
-3. Select **Run query**.
+1. Open **Advanced hunting** > **New query**.
+2. Replace `<MISALIGNMENT_DEVICE_ID>` with this case's device ID. Keep the narrow window and verify the scan PID against the process tree.
+3. Set the time picker to include the investigation window and run:
 
 ```kusto
 let deviceId = "<MISALIGNMENT_DEVICE_ID>";
-let startTime = datetime(<MISALIGNMENT_START_UTC>);
-let endTime = datetime(<MISALIGNMENT_END_UTC>);
-let scanProcessId = tolong("<SCAN_PROCESS_ID>");
+let startTime = datetime(2026-10-22T22:40:00Z);
+let endTime = datetime(2026-10-22T23:00:00Z);
+let scanProcessId = tolong("3492");
 DeviceNetworkEvents
 | where Timestamp between (startTime .. endTime)
 | where DeviceId == deviceId
@@ -101,21 +77,19 @@ DeviceNetworkEvents
 | take 50
 ```
 
-4. Review the distribution across ports 22, 139, and 445 and the balance of failed and successful connections.
-5. Explain why a successful connection is not proof of authentication, remote command execution, or document retrieval.
+4. Which ports were contacted? Were most connections successful or unsuccessful?
+5. To focus the hunt, add `| where RemotePort == 22` immediately before `summarize` and rerun. What changes? Remove that filter before moving on.
 
-**Expected result:** The checked dataset shows a broad scan with predominantly failed connections and a successful port-22 connection. `EventCount` counts records; `DistinctRemoteIPs` counts distinct addresses per result group. Do not sum those distinct counts to obtain a global host count.
+`EventCount` counts records. `DistinctRemoteIPs` counts addresses within each result group; adding those values across groups can count the same host more than once. A successful connection does not establish authentication or remote command execution.
 
-## Verify the credential-access protection result
+## Hunt: did the credential-access attempt succeed?
 
-Look for explicit prevention evidence associated with the credential-access attempt.
-
-1. Open a **New query** and run the following after replacing the scenario values.
+Run this second query with the same device ID:
 
 ```kusto
 let deviceId = "<MISALIGNMENT_DEVICE_ID>";
-let startTime = datetime(<MISALIGNMENT_START_UTC>);
-let endTime = datetime(<MISALIGNMENT_END_UTC>);
+let startTime = datetime(2026-10-22T22:40:00Z);
+let endTime = datetime(2026-10-22T23:00:00Z);
 DeviceEvents
 | where Timestamp between (startTime .. endTime)
 | where DeviceId == deviceId
@@ -123,7 +97,7 @@ DeviceEvents
 | extend Evidence = parse_json(AdditionalFields)
 | where tostring(Evidence.ThreatName) contains "Lsassdump"
     or tostring(Evidence.Description) contains "Lsassdump"
-| project Timestamp, ActionType, FileName, InitiatingProcessFileName,
+| project Timestamp, ActionType, InitiatingProcessFileName,
     ThreatName = tostring(Evidence.ThreatName),
     WasRemediated = tostring(Evidence.WasRemediated),
     Description = tostring(Evidence.Description)
@@ -131,33 +105,28 @@ DeviceEvents
 | take 100
 ```
 
-2. Locate the record describing prevention of `HackTool:PowerShell/Lsassdump.A`.
-3. Compare it with the script-launch event. Do not claim credentials were successfully dumped.
+Find the explicit prevention description associated with `HackTool:PowerShell/Lsassdump.A`. Compare its timing with the script activity. Describe the launch of an attempt separately from successful credential extraction.
 
-**Expected result:** The sequence includes a credential-access attempt and explicit AMSI prevention evidence.
+## Explain your findings
 
-## Separate related incident context from scenario proof
+1. Where did the agent depart from the user's request?
+2. What did hunting reveal about the scale and outcome of the scan?
+3. What evidence supports prevention of the LSASS-related attempt?
+4. What would you still need to establish successful remote access or credential theft?
 
-Only attribute historical containment to this scenario when its device and time match.
+<details>
+<summary>Explain the finding: task deviation with different outcomes</summary>
 
-1. If the instructor supplies a historical disruption reference, open that incident and select **Activities**.
-2. Identify the exact action, entity, source, and completion status.
-3. Compare its device ID and time with this scenario before attributing it to the document-search activity.
-4. If the IDs differ, record it as separate related context, not proof that this process caused that action.
+![Attack story: A sales-document request leads through Copilot and PowerShell to separate scanning and credential-access branches. Scanning is observed; AMSI prevention applies specifically to the LSASS-related attempt.](media/windows-misalignment-story.svg)
 
-The lab evidence includes completed automated **Contain User** activity and RDP enforcement on the other Windows device ID. This does not establish agent-initiated RDP or device isolation for this older-device scenario. This optional observation does not require performing a response action.
+The task is document search; the observed activity includes network scanning and credential-access attempts. The documented scan includes ports 22, 139, and 445, with predominantly failed connections and a successful port-22 connection. That connection does not prove a successful login. The LSASS-related records include explicit AMSI prevention evidence, not proof of a successful credential dump.
 
-## Complete the investigation
+The alert title need not label this behavior as "misalignment" for you to explain the task deviation. Shared incident membership also does not prove that this run caused historical containment on another device identity.
 
-Build an evidence-based explanation of the task deviation and the observed impact.
+[Editable diagram source](media/windows-misalignment-story.excalidraw)
 
-1. Explain the difference between the user's document-search request and the observed actions.
-2. Cite the process evidence linking the agent to scanning and credential-access attempts.
-3. Describe the recorded prevention result and remaining uncertainty about impact.
-
-You are finished when you can defend those conclusions without treating script names, connection success, or incident membership as proof of successful compromise.
+</details>
 
 ## Next step
 
-> [!div class="nextstepaction"]
-> [Investigate a macOS MCP execution chain](03-macos-runtime.md)
+[Investigate code execution behind a macOS MCP tool](03-macos-runtime.md)

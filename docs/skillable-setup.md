@@ -14,11 +14,13 @@ Keep passwords, account rosters, tenant identifiers, profile identifiers, onboar
 
 ## Prepare the instructions
 
-1. Link the [attendee path](../instructions/README.md).
-2. Supply controlled scenario references: incident or alert entry point, device and agent reference, evidence time window, and any approved hunting query.
+1. Use the [attendee path](../instructions/README.md) as the canonical source. Convert to Skillable only after reviewing the GitHub version; preserve the question, investigation options, focused hunt, and explained finding for every case.
+2. Supply controlled scenario links and a direct Local agents inventory fallback. Public exercises include alert titles, UTC windows, and process locators; learners copy device IDs from the portal. If evidence is refreshed, update all public query windows/process references and controlled links together.
 3. Set the required activity duration to 75 minutes and label Agent 365 observations as optional extra credit.
 4. Explain that evidence is pre-seeded and shared. Learners do not run attacks, change incident state, or perform response actions.
 5. Provide a clear help path for sign-in failures, unavailable evidence, or missing permissions.
+
+Keep the required timing at 5 minutes sign-in, 10 discovery, 15 XPIA, 20 misalignment, 20 macOS, and 5 comparison. Do not append unrelated endpoint onboarding, policy configuration, incident mutation, or live attack exercises.
 
 Do not guess Skillable template syntax. Add product-specific credential tokens and page separators only after confirming the delivery profile's supported format.
 

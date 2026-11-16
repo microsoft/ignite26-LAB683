@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title description">
+<title id="title">A campaign-summary tool leads to unexpected local execution</title><desc id="description">Trace the code behind the tool, then separate detection from a proven protection outcome.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#605E5C"/></marker></defs>
+<rect width="1500" height="900" fill="#ffffff"/>
+<text x="40" y="58" font-family="Segoe UI,Arial,sans-serif" font-size="34" font-weight="600" text-anchor="start" fill="#000000"><tspan x="40" dy="0">A campaign-summary tool leads to unexpected local execution</tspan></text>
+<text x="40" y="103" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="40" dy="0">Trace the code behind the tool, then separate detection from a proven protection outcome.</tspan></text>
+<text x="40" y="155" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" fill="#000000"><tspan x="40" dy="0">Solid arrows summarize the observed task and execution chain, not authoritative MCP registration telemetry.</tspan></text>
+<rect x="40" y="230" width="260" height="310" rx="18" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<circle cx="68" cy="259" r="17" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="68" y="266" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="68" dy="0">1</tspan></text>
+<circle cx="170" cy="312" r="17" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<polyline points="136,365 136,342 150,330 190,330 204,342 204,365" fill="none" stroke="#0078D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="170" y="401" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="170" dy="0">Campaign summary</tspan></text>
+<text x="170" y="441" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="170" dy="0">User asks for</tspan><tspan x="170" dy="28.35">retrieve_campaign_brief</tspan><tspan x="170" dy="28.35">and a short summary</tspan></text>
+<rect x="330" y="230" width="260" height="310" rx="18" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<circle cx="358" cy="259" r="17" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="358" y="266" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="358" dy="0">2</tspan></text>
+<rect x="421" y="301" width="78" height="60" rx="12" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<circle cx="445" cy="326" r="5" fill="none" stroke="#0078D4" stroke-width="2"/>
+<circle cx="475" cy="326" r="5" fill="none" stroke="#0078D4" stroke-width="2"/>
+<polyline points="445,346 475,346" fill="none" stroke="#0078D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="460,301 460,288" fill="none" stroke="#0078D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="460" cy="283" r="5" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="460" y="401" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="460" dy="0">Copilot</tspan></text>
+<text x="460" y="441" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="460" dy="0">Agent starts the</tspan><tspan x="460" dy="28.35">local tool process</tspan></text>
+<rect x="620" y="230" width="260" height="310" rx="18" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2"/>
+<circle cx="648" cy="259" r="17" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2"/>
+<text x="648" y="266" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="648" dy="0">3</tspan></text>
+<rect x="707" y="296" width="86" height="62" rx="5" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2"/>
+<polyline points="725,317 738,327 725,337" fill="none" stroke="#5C2D91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="751,338 774,338" fill="none" stroke="#5C2D91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="750" y="401" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="750" dy="0">Node entry script</tspan></text>
+<text x="750" y="441" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="750" dy="0">Local MCP context;</tspan><tspan x="750" dy="28.35">server.mjs appears</tspan><tspan x="750" dy="28.35">in the command line</tspan></text>
+<rect x="910" y="230" width="260" height="310" rx="18" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2"/>
+<circle cx="938" cy="259" r="17" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2"/>
+<text x="938" y="266" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="938" dy="0">4</tspan></text>
+<rect x="997" y="296" width="86" height="62" rx="5" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2"/>
+<polyline points="1015,317 1028,327 1015,337" fill="none" stroke="#5C2D91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1041,338 1064,338" fill="none" stroke="#5C2D91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1040" y="401" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1040" dy="0">osascript / JXA</tspan></text>
+<text x="1040" y="441" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="1040" dy="0">JavaScript for</tspan><tspan x="1040" dy="28.35">Automation executes</tspan><tspan x="1040" dy="28.35">on the device</tspan></text>
+<rect x="1200" y="230" width="260" height="310" rx="18" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<circle cx="1228" cy="259" r="17" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<text x="1228" y="266" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1228" dy="0">5</tspan></text>
+<rect x="1287" y="296" width="86" height="62" rx="5" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<polyline points="1305,317 1318,327 1305,337" fill="none" stroke="#F7630C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1331,338 1354,338" fill="none" stroke="#F7630C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1330" y="401" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1330" dy="0">Shell activity</tspan></text>
+<text x="1330" y="441" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="1330" dy="0">Captured code includes</tspan><tspan x="1330" dy="28.35">synthetic discovery</tspan><tspan x="1330" dy="28.35">and a hardware stub</tspan></text>
+<polyline points="302,384 326,384" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="592,384 616,384" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="882,384 906,384" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1172,384 1196,384" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="40" y="585" width="1420" height="130" rx="18" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2"/>
+<text x="62" y="621" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="start" fill="#000000"><tspan x="62" dy="0">Evidence that changes the interpretation</tspan></text>
+<text x="62" y="658" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="62" dy="0">Process names alone can mislead: the hardware-information command resolves to a synthetic stub.</tspan><tspan x="62" dy="29.700000000000003">A current MCP configuration match supports context, not proof of which historical registration was used.</tspan></text>
+<rect x="40" y="745" width="690" height="130" rx="18" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="62" y="781" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="start" fill="#000000"><tspan x="62" dy="0">Portal + hunting establish the behavior</tspan></text>
+<text x="62" y="818" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="62" dy="0">Match the process chain, then read captured script</tspan><tspan x="62" dy="29.700000000000003">fragments. Code is not proof every step completed.</tspan></text>
+<rect x="770" y="745" width="690" height="130" rx="18" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<text x="792" y="781" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="start" fill="#000000"><tspan x="792" dy="0">Outcome still needs evidence</tspan></text>
+<text x="792" y="818" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="792" dy="0">The alert title does not prove information theft.</tspan><tspan x="792" dy="29.700000000000003">A Blocked label alone does not prove prevention.</tspan></text>
+</svg>
