@@ -9,15 +9,19 @@
 ## 🔥LAB683: Secure local AI agents with end-to-end threat protection
 ### Session description
 
-Investigate three prepared local AI agent security scenarios in Microsoft Defender: Windows cross-prompt injection (XPIA), Windows agent misalignment, and a macOS MCP execution chain. Follow alerts, agent context, process evidence, device events, and timelines, with Advanced Hunting used where it helps answer the investigation question.
+AI agents can read files, run commands, and connect to tools. What happens when they follow malicious instructions or act beyond the user's intent?
+
+Step into the role of a security analyst investigating AI agent activity on Windows and macOS. Discover the agents, follow the alert evidence, and use Advanced Hunting to answer questions the alert alone cannot resolve. Investigate an attempted credential theft through prompt injection, a document-search agent that starts scanning the network, and suspicious code execution behind a local MCP tool.
+
+You'll work in a preconfigured environment where the suspicious activity has already taken place. Your job is to follow the alerts, reconstruct the agents' actions, and determine what the evidence says about Defender's response.
 
 #### Lab delivery model
 
-This is a 75-minute, L300, browser-first investigation lab. Attendees use individually assigned accounts in the team's dedicated lab tenant and investigate pre-seeded evidence. Skillable is the intended delivery and secure credential-assignment experience; the lab team must validate its configuration before delivery.
+This is a 75-minute, L300, browser-first investigation lab. Use an individually assigned account in the lab environment. You do not need a Mac, a local agent installation, or API credentials.
 
 No attendee endpoint provisioning, local agent installation, live attack generation, or Sentinel setup is required. Response actions, including isolation, remediation, Live Response, and policy changes, are out of scope. Optional extra credit observes Agent 365 elements of the investigation; it is not required to complete the lab.
 
-**Content status:** Tester draft with investigation guidance, sanitized Windows evidence screenshots, and hunting queries. The final exercise now uses the October 30 macOS MCP investigation report instead of the earlier poisoned brief. It traces synthetic discovery, qualifies the MCP configuration link, and leaves prevention unestablished despite the portal's Blocked label. This content change does not approve macOS for event delivery: owner approval, attendee permissions, controlled references, evidence retention, and full-session timing still require rehearsal.
+The [attendee path](instructions/README.md) combines portal investigation and focused hunting in each scenario: **ask a question, inspect the evidence, hunt for supporting activity, and explain your findings**. Owners can find access, evidence-refresh, and rehearsal requirements in the [delivery plan](docs/content-plan.md).
 
 ### 🚀 Getting started
 
@@ -51,9 +55,9 @@ If you're learning at your own pace:
 
 By the end of this session, you will be able to:
 
-- Investigate Windows XPIA evidence and distinguish a recorded prevention outcome from an attempted attack
-- Reconstruct Windows agent misalignment by correlating alerts, process evidence, and device timeline activity
-- Trace a macOS MCP-related execution chain and distinguish configuration, observed behavior, and protection-outcome evidence
+- Discover local AI agents and distinguish their configuration from their observed activity
+- Investigate Windows and macOS agent threats using alerts, prompt or script evidence, and process timelines
+- Use Advanced Hunting to measure suspicious behavior and explain what was detected, executed, or prevented
 
 ### 💻 Technologies used
 

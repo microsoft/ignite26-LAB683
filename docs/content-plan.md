@@ -1,6 +1,6 @@
 # Author the three investigation scenarios
 
-This document tracks the tester draft and its remaining delivery work. Attendee pages now include concrete procedures, screenshots, hunting queries, and completion checks; they are not yet a fully rehearsed event manual.
+This document tracks the GitHub-first attendee path and remaining delivery work. The exercises use question -> portal evidence -> focused hunting -> explained finding. API checks validate the data, not the attendee portal experience; full role-based rehearsal remains required before delivery.
 
 ## Agreed scope
 
@@ -17,13 +17,13 @@ This document tracks the tester draft and its remaining delivery work. Attendee 
 |---|---|---|---|
 | Windows XPIA | What untrusted input attempted to redirect the agent, and what did runtime protection prevent? | Alert, input/tool context available in the build, recorded prevention result, attributable endpoint evidence | Explain the attempted deviation and distinguish attempted behavior from observed execution |
 | Windows misalignment | Where did the agent depart from the user's benign goal, and what happened next? | Original sales-document request, Copilot-child script launches, network scan, credential-access attempt, and AMSI prevention | Reconstruct the sequence without asserting successful credential theft or remote compromise |
-| macOS MCP execution chain | How did a campaign-summary task lead to synthetic discovery, and what do configuration and protection evidence establish? | Incident/alerts, Copilot -> Node -> JXA/shell chain, script timeline event, scoped MCP configuration, and approved run/action evidence | Qualify the potential configuration link; distinguish observed discovery, no reported archiving/uploading, and unestablished prevention despite the Blocked label |
+| macOS MCP execution chain | How did a campaign-summary task lead to synthetic discovery, and what do configuration and protection evidence establish? | November 2 alert, Copilot -> Node -> JXA/shell events, captured script fragments, scoped MCP configuration, and approved run/action evidence | Explain the synthetic behavior, qualify the configuration link, and distinguish detected execution from proven prevention or information theft |
 
 Do not advertise candidate detection lists as finalized coverage. Include only detections and evidence validated for the selected scenarios.
 
 ## Validate the third scenario
 
-The October 30 investigation report supplies replacement technical content, not approval to reverse the earlier macOS demo exclusion. Obtain an explicit owner go/no-go decision for this exact path before delivery.
+The October 30 investigation report supplies background. November 15 API checks independently confirm the November 2 replay's alert, process events, and captured script fragments; they do not establish attendee UI access or approval to reverse the earlier macOS demo exclusion. Obtain an explicit owner go/no-go decision for this exact path before delivery.
 
 1. Confirm the selected build emits the incident, alerts, and process/script telemetry needed for the MCP execution-chain exercise.
 2. Confirm ordinary attendee accounts can complete an investigation from the prepared evidence.
@@ -32,7 +32,7 @@ The October 30 investigation report supplies replacement technical content, not 
 5. Compare available action targets/results with approved saved-run evidence. Do not claim discovery was prevented merely because the portal says Blocked.
 6. If any required element is missing, obtain owner approval for an alternative, then author and rehearse it. Do not replace the runtime investigation with inventory-only browsing.
 
-There are still three required scenarios, not a fourth exercise. The replacement is `northstar-campaign-assets-infosteal`: the legitimate request names `retrieve_campaign_brief`, Copilot launches Node running `server.mjs`, and descendant JXA/shell activity performs synthetic discovery. The report states no archiving or uploading occurred. Neither the name nor the current registration match establishes external exfiltration, poisoning, rug pull, persistence, or historical tool invocation.
+There are still three required scenarios, not a fourth exercise. The legitimate request names `retrieve_campaign_brief`, Copilot launches Node running `server.mjs`, and descendant JXA/shell activity includes synthetic discovery. The October report states no archiving or uploading occurred in its reported run; do not automatically apply that outcome to November's replay. Neither the name nor the current registration match establishes external exfiltration, poisoning, rug pull, persistence, or historical tool invocation.
 
 ## Finish the exact attendee instructions
 
@@ -43,7 +43,21 @@ There are still three required scenarios, not a fourth exercise. The replacement
 5. Add approved hunting queries only after validating table availability, identifiers, time windows, and expected results. Do not invent identity joins.
 6. Rehearse the full 75-minute journey and optional extra credit with the delivery team.
 
-The October 23 recorded walkthrough, sanitized screenshots, and LAB683 API results support the unchanged Windows exercises. Its Mac prompt and query observations describe the superseded poisoned-brief run. The replacement uses Michael Peck's October 30 investigation report, genuine portal captures, and the report's saved-run interpretation; this authoring update does not independently validate the underlying logs, current deployment, or ordinary attendee access. Keep the complete report, raw captures, and private engineering references in controlled owner material, not GitHub.
+The October 23 walkthrough and approved screenshots support the Windows portal procedures; November 15 API checks reconfirm retained Windows events. The old Mac prompt observations describe the superseded poisoned-brief run. The required Mac queries now target the November 2 replay, not the October report's process instances. Keep complete reports, raw results, and private engineering references in controlled owner material, not GitHub.
+
+The 75-minute path allocates 5 minutes to sign-in, 10 to discovery, 15 to XPIA, 20 to misalignment, 20 to macOS, and 5 to comparison. The first hunt is fully supplied, misalignment asks learners to modify a filter, and macOS asks them to complete a process filter with a hint available.
+
+### Explain the findings visually
+
+Each case ends with an expandable explanation and an original illustrated attack story in `instructions/media/`. Numbered stages, simple actor/tool icons, and evidence callouts make the behavior easier to discuss without exposing the answer before the investigation. SVGs have descriptive titles, accessible descriptions, and matching prose; editable `.excalidraw` sources accompany them.
+
+The visual approach draws on public Microsoft Security Blog patterns, not copied artwork or an official diagram template:
+
+- [Securing AI agents](https://www.microsoft.com/en-us/security/blog/2026/06/30/securing-ai-agents-ai-tools-move-from-reading-acting/), Figure 1: stage the behavior and place protection evidence beneath the relevant stages.
+- [SCKit attack chain](https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/), Figure 2: separate observed deployment from potential propagation rather than drawing both as confirmed activity.
+- [Trained to betray](https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/): contrast a benign-looking task with unsafe tool behavior. Its backdoor mechanism is not the mechanism claimed for these lab scenarios.
+
+The XPIA diagram uses dashed requested-action arrows, not an observed exfiltration path. Misalignment branches distinguish scanning from the specific prevented LSASS attempt. The Mac story calls out synthetic code and an unresolved protection outcome. Text labels carry those distinctions independently of color. Refresh diagrams together with the evidence; do not retain a prevention marker after changing to a run that lacks its supporting record.
 
 ## Prepare the controlled scenario reference sheet
 
@@ -55,7 +69,7 @@ Supply these fields in Skillable or approved private operator material, not in G
 | Evidence window | UTC start/end for KQL and equivalent portal-local date/time values |
 | Process | PID and creation time; scan child PID for misalignment |
 | Rich prompt locator | Process instance, action type, event time and distinguishing text prefix |
-| Mac script locator | Node entry script and Endpoint Script Content timeline event, with execution identity and time |
+| Mac script locator | `DeviceEvents` / `ScriptContent` events and equivalent timeline locators, with execution identity and time; distinguish captured fragments from complete entry-script source |
 | Mac configuration locator | Named registration, executable/arguments, device/account scope, observation time, and known truncation |
 | Mac outcome reference | Approved saved-run evidence and exact per-target detection/action/result timing; distinguish live observations from report-based conclusions |
 | Optional disruption context | Exact action reference, entity, source and status; verified device association |
@@ -67,11 +81,11 @@ Use the date/time format actually accepted by the attendee environment. Presente
 
 | Exercise | Expected evidence-based answer | Avoid this unsupported conclusion |
 |---|---|---|
-| Discovery | Local agent profiles are device/account-associated observations; source identity links alert evidence to the profile GUID | A configured MCP was invoked, a trusted host implies safe behavior, or an empty identity field implies no agent |
+| Discovery | Latest local agent profiles are device/account-associated observations; configuration has an observation time and differs from execution evidence | A configured MCP was invoked, a trusted host implies safe behavior, or an empty identity field implies no agent |
 | Windows XPIA | The prompt requests local credential-file access and a POST to the test collection destination. The blocked alert and network-prompt remediation corroborate prevention | No URL match alone proves nothing was disclosed |
 | Misalignment | The user requested comprehensive sales-document search; Copilot launched scan, remote-file-search and credential-access scripts; LSASS-dumping execution was prevented | A successful TCP connection proves login, document retrieval or credential theft |
 | Historical disruption | Automated user containment and RDP enforcement are observable on the later Windows identity | This proves agent-initiated RDP, automatic device isolation, or causality for the separate older-device misalignment run |
-| Mac MCP chain | Copilot launched Node running `server.mjs`; JXA/shell descendants performed synthetic discovery. A current configuration match is potential only. The report states no archiving/uploading, completed simulated steps, and later already-exited-process responses | The benign request is prompt injection; registration proves historical invocation or poisoning; the scenario name proves exfiltration; Blocked proves discovery was prevented |
+| Mac MCP chain | November replay shows Copilot, Node, JXA/shell activity and captured synthetic script fragments. A current configuration match is potential only. October's report describes completed simulated steps and later already-exited-process responses for its own run | The benign request is prompt injection; registration proves historical invocation or poisoning; a synthetic stub is the real OS utility; the scenario name proves exfiltration; Blocked proves discovery was prevented |
 | Agent 365 extra credit | Matching profiles currently lack Entra identity values; registry context requires a separately verified pivot | All local agents already have a usable Agent 365 registry/identity path |
 
 The Windows runs reuse a VM display name after a snapshot revert, as explained by the presenter. Their different device IDs remain distinct query scopes.
@@ -85,7 +99,7 @@ The Windows runs reuse a VM display name after a snapshot revert, as explained b
 | Repeated generic prompt-call labels | Use the controlled composite locator and text prefix, not row number or icon alone |
 | Rich prompts absent from retrieved hunting rows | Use portal detail panes; do not promise KQL conversation reconstruction |
 | Agent-page map or alert tab fails to load | Keep direct alert and device routes available |
-| Mac entry-script source is not directly available from its file card | Use the supplied Endpoint Script Content timeline locator; the File content analysis-submission tab is not execution-time source. Do not submit files |
+| Mac entry-script source is not directly available from its file card | Hunt captured `ScriptContent` fragments and use the equivalent timeline locator. Do not promise complete `server.mjs` source or submit files through the File content analysis tab |
 | Mac fork/exec rows and interpreter attribution are ambiguous | Track execution identity, creation time, executable path, and script arguments; repeated PIDs are not necessarily separate processes |
 | Current MCP configuration lacks historical invocation proof | Label executable/argument matches as potential configuration links and record timing, scope, provenance, and truncation |
 | Blocked/terminated wording can disagree with saved-run evidence | Separate detection, requested action, exact target, result, and prevention certainty; label report-based conclusions |
@@ -113,6 +127,22 @@ The documented queries were executed through Microsoft Graph hunting against the
 | Misalignment LSASS-related evidence | Four records |
 
 These are an October 23 instructor baseline, not immutable learner success counts or validation of the replacement Mac run. None reached its result cap. Recheck after evidence refresh and with the attendee role. No credentials, app secrets, raw result exports, or tenant-specific identifiers are included here.
+
+### November 15 API recheck
+
+Read-only app access reconfirmed the retained Windows evidence and the November 2 Mac replay. App access is not attendee-role validation.
+
+| Scope | Confirmed evidence |
+|---|---|
+| Current local inventory | Three rows from the required filtered 30-day hunt; not a fixed learner completion count |
+| Windows XPIA | Four prompt-injection AV records in the documented window, including two reporting remediation |
+| Windows misalignment | Four relevant script launches, retained scan aggregation, and four LSASS-related records |
+| November 2 macOS replay | Matching local-MCP alert, Copilot/Node/JXA/shell process events, and three `ScriptContent` events |
+| Mac captured code | Two short shell fragments and a longer JXA script; the hardware-information command resolves to a synthetic stub |
+
+All six required KQL blocks were rerun directly from the rewritten Markdown, substituting only controlled device IDs and the Mac hint. Results were 3 inventory rows, 4 XPIA rows, 4 scan groups, 4 LSASS-related rows, 38 Mac process rows, and 3 Mac script-content rows. The learner's port-22 filter variant returned 2 groups. None reached its result cap. These checks do not validate portal labels, query-editor permissions, or attendee timing.
+
+The Windows runs are already over three weeks old at this check. Standard rolling hunting retention can expire before delivery even if alerts remain visible. Refresh/replay the evidence before that happens, then update dates, process instances, expected results, screenshots where needed, and controlled links as one change. Do not work around expired telemetry by silently replacing a required investigation with an unrelated alert.
 
 ## Review responsibilities
 

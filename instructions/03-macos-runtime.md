@@ -1,99 +1,215 @@
 ---
-title: Investigate a macOS MCP execution chain in Microsoft Defender
-description: Trace a Copilot-launched Node script through JXA and synthetic discovery. Qualify MCP configuration links and distinguish detection from prevention.
+title: Investigate code execution behind a macOS MCP tool
+description: Identify the agent, requested MCP server and tool, trace local execution, and explain the script and protection evidence.
 author: j0shbregman
 ms.author: j0shbregman
 ms.service: microsoft-defender-xdr
 ms.topic: how-to
-ms.custom: msecd-doc-authoring-1032
-ms.date: 10/30/2026
+ms.date: 11/16/2026
 ai-usage: ai-generated
-#customer intent: As a SOC analyst, I want to investigate a macOS execution chain so that I can distinguish observed behavior, possible MCP associations, and protection outcomes.
 ---
 
-# Investigate a macOS MCP execution chain in Microsoft Defender
+# Investigate code execution behind a macOS MCP tool
 
-Use Microsoft Defender to investigate the prepared `northstar-campaign-assets-infosteal` scenario. A legitimate campaign-brief request leads to a Copilot-launched Node script and descendant discovery activity. The scenario name does not prove information theft: the supplied run performed synthetic discovery, with no archiving or uploading. Allow 15 minutes.
+A tool that promises a campaign brief can also run code on the user's device. In this synthetic malicious-tool simulation, a user asks Copilot to retrieve a brief and summarize its deliverables and milestones. The local Model Context Protocol (MCP) server behind the tool leads to unexpected macOS automation and shell activity.
 
-## Prerequisites
+This is not another example of malicious instructions hidden in a document. Investigate the **code behind a tool integration**: which agent and tool are involved, what runs locally, and what Defender reports stopping. The recording does not establish how the tool was installed or compromised.
 
-- Complete [Windows agent misalignment](02-agent-misalignment.md).
-- Open the **macOS MCP execution chain** reference-sheet row with its incident, alerts, device, process instances, evidence window, and approved run-evidence reference.
-- Use a browser; you do not need a Mac or local agent installation.
+**Your mission:** Explain the path from a campaign-summary request to suspicious local execution. Allow 20 minutes, split roughly equally between portal investigation and Advanced hunting. You need only your browser, not a Mac.
 
-**Tester draft:** This replaces the earlier poisoned-brief exercise using the October 30 investigation report. The report's portal captures and saved-run interpretation are reference evidence, not a fresh attendee-role validation. Owner approval for macOS delivery, ordinary-account access, evidence retention, and the complete 15-minute journey remain required.
+Use the portal to understand the alert and process relationships. Use hunting to turn a long command line into readable server/tool names and inspect captured code. You do not need to understand every command-line switch or write KQL from scratch.
 
-## Identify the task and execution chain
+## Open the case
 
-Start from the supplied incident and establish what the user asked the agent to do.
+1. Open the lab team's Mac MCP alert link, or locate **Suspected information theft by AI Agent through local MCP** in **Incidents & alerts** > **Alerts** around **November 2, 2026, 18:35 UTC**.
+2. Read **What happened** and locate **GitHub Copilot CLI** among the affected assets. Unlike the generic endpoint alerts in scenario 2, this alert explicitly describes activity associated with an AI agent and local MCP.
+3. Open the affected device in another tab and copy its device ID for the hunts.
 
-1. Open the incident from the controlled reference sheet, then open its supplied Mac alert.
-2. Confirm the incident, alert, device, and time window. A matching display name alone is not enough.
-3. Open **Process tree** and locate **GitHub Copilot CLI** using the supplied PID and creation time.
-4. Inspect the captured command line. The legitimate request is to use the named MCP server's `retrieve_campaign_brief` tool to retrieve the latest Zava campaign brief and summarize its deliverables.
-5. Follow the chain from `copilot` to `node` running `server.mjs`, then to `osascript` with JavaScript for Automation (JXA) and its shell descendants.
-6. Record the process IDs, creation times, executable paths, and script arguments. The source run shows Copilot PID 7536 and Node PID 7585; use refreshed reference values if the lab team supplies a newer run.
+| Reference | Documented run |
+|---|---|
+| Investigation window | November 2, 2026, 18:34-18:37 UTC |
+| Starting agent | `copilot`, PID 24186, created 18:35:15 UTC |
+| Node entry process | PID 24259, created 18:35:19 UTC |
 
-**Expected result:** You can explain the observed Copilot -> Node -> JXA -> shell chain separately from the authorized campaign-summary task. The benign user request is not prompt injection, and this evidence does not establish a poisoned tool response or MCP rug pull.
+These are references for the November 2 run, not the older October Mac prompt-injection example. If the lab team refreshes the scenario, use its replacement values together.
 
-The tree can show repeated PIDs or changing executable labels across macOS fork/exec transitions. Do not count each displayed row as an independent process or mistake the launcher for the executed interpreter.
+![Defender alert titled Suspected information theft by AI Agent through local MCP, with GitHub Copilot CLI shown as an affected agent.](media/macos-mcp-alert.png)
 
-## Inspect the script and discovery evidence
+*Start with the AI/MCP-specific alert and its affected agent, not a guess based on a suspicious filename. The screenshot contains cropped panels from the same alert; device and account details are omitted.*
 
-Distinguish a script reference from source captured for that execution.
+**Time display:** The portal screenshots use UTC-05:00: **1:35 PM on November 2** corresponds to **18:35 UTC**. The hunts below use UTC. Use your portal's displayed offset rather than changing the investigation date.
 
-1. Expand the Node process. Review **Command line**, **Image file path**, and the **Referenced in commandline** card for `server.mjs`.
-2. Record the script path, hash, and timestamps where available. Interpreter metadata describes Node, not the contents or provenance of `server.mjs`.
-3. Open the supplied device timeline and set **Time range** > **Custom range** to the reference sheet's portal-local window.
-4. Use the supplied locator for the **Endpoint Script Content** event. Inspect available captured script content and its relationship to the execution. If the event is unavailable, record that limitation and use only the approved, labeled reference evidence.
-5. Follow the JXA and shell events. Compare resolved executable paths with command names before describing what ran.
+## Investigate and hunt: which agent, server, and tool are involved?
 
-**Expected result:** The report describes synthetic discovery. In this run, the command named `system_profiler` is a generated synthetic stub; its name alone does not establish execution of the real operating-system utility.
+**Question:** Can you identify the named tool without decoding the entire command line?
 
-The file page's **File content** tab required an analysis submission in the inspected experience; it is not an execution-time source viewer. Do not submit a file or run analysis for this lab. Script content exists in a separate timeline event, so an unavailable file-tab view does not mean source is absent everywhere.
+### Portal: find the request
 
-## Qualify the MCP association
+1. Maximize **Alert story** and select **Process tree**.
+2. Locate the starting `copilot` instance, PID **24186**, created **18:35:15 UTC**. Expand the details using the chevron at the right of that process row.
+3. Inspect **Command line**, scrolling inside the field if needed. Find the instruction starting **Use the ... MCP server to call ...** and the request to summarize campaign deliverables and milestones.
+4. Record the business task. You do not need to interpret the remaining switches; hunting will extract the names next.
 
-Compare configuration with execution without treating configuration as invocation telemetry.
+### Advanced hunting: make the names readable
 
-1. Open **Assets** > **AI agents** > **Local agents**, or use the supplied direct inventory link if the default view fails.
-2. Select **GitHub Copilot CLI** on the supplied Mac device and account.
-3. Expand **Local MCP servers**, where available, and locate the scenario's named registration.
-4. Compare the configured executable and script arguments with the Node process. Record the device/account scope, observation time, and any truncation or missing values.
-5. State whether you found a potential configuration link. If exact values cannot be inspected, leave the match unestablished.
+Open **Advanced hunting** > **Create new** > **Query in editor** and replace `<MAC_DEVICE_ID>`. Keep **Set in query** if the time picker switches to it; otherwise select a range covering the full investigation window. Run this query:
 
-**Expected result:** A current executable-and-argument match supports a **potential configuration link**, not proof that this configuration was consumed historically or that the named tool was invoked. The request names a tool, but authoritative MCP invocation telemetry is not established by this exercise.
+```kusto
+let deviceId = "<MAC_DEVICE_ID>";
+let startTime = datetime(2026-11-02T18:34:00Z);
+let endTime = datetime(2026-11-02T18:37:00Z);
+DeviceProcessEvents
+| where Timestamp between (startTime .. endTime)
+| where DeviceId == deviceId
+| where FileName =~ "copilot"
+| where ProcessCommandLine contains "--allow-tool="
+| top 1 by ProcessCreationTime asc
+| extend RequestedMcpServer = extract(@"Use the ([\w-]+) MCP server", 1, ProcessCommandLine),
+    RequestedTool = extract(@"to call ([\w-]+) exactly once", 1, ProcessCommandLine)
+| project Agent = FileName, AgentProcessId = ProcessId,
+    RequestedMcpServer, RequestedTool, ProcessCreationTime
+```
 
-Different **MCP servers** and **Local MCP servers** counts describe different categories; zero in one does not negate entries in the other. A dash in an alerts field, a low agent-risk label, or a trusted host does not establish absence of suspicious descendant activity.
+1. Expand the result row with its left chevron to read the complete **RequestedMcpServer** and **RequestedTool** values. Use **Full screen** above the results if needed.
+2. Match **AgentProcessId** and **ProcessCreationTime** to the portal instance.
+3. Explain where the names came from: this query extracts text from this recording's launch command. It does not discover a separate MCP tool-call event.
 
-## Distinguish detection, remediation, and prevention
+![Advanced hunting result showing Copilot PID 24186, requested server northstar-campaign-assets-infosteal, requested tool retrieve_campaign_brief, and the process creation time.](media/macos-mcp-hunt-identity.png)
 
-Record what each evidence source establishes rather than adopting the alert's outcome label.
+*Hunting makes the long command line readable without inventing new telemetry. The requested server and tool are shown separately from the executable name.*
 
-1. Record the alert's displayed detection and protection status, including **Blocked** where shown.
-2. Review available action details. Separate the detection time, requested action, exact process/file target, actual result, and whether prevention is demonstrated. Mark unavailable values as unknown.
-3. Compare the approved run-evidence reference. The October 30 report says saved execution logs show the simulated steps completed and later termination responses encountered already-exited processes. Label this as report-based unless you can inspect the supplied underlying logs.
-4. Separate discovery from data access, collection, and transfer. The report states that this run performed no archiving or uploading; it does not demonstrate external exfiltration.
-5. Do not infer that terminating a descendant stopped Copilot, disabled its MCP registration, or prevented a later launch.
+<details>
+<summary>Explain the finding: a legitimate request selects a suspicious tool integration</summary>
 
-**Expected result:** Detection is observed, but the **Blocked** label alone does not prove the synthetic discovery was prevented. If the live view does not resolve the action/result discrepancy, keep prevention unestablished. Do not use missing network rows alone to prove absence of transfer.
+| Evidence | Finding |
+|---|---|
+| Agent | GitHub Copilot CLI, executable `copilot` |
+| Requested MCP server | `northstar-campaign-assets-infosteal` |
+| Requested tool | `retrieve_campaign_brief` |
+| Business task | Retrieve the campaign brief once and summarize deliverables and milestones |
 
-## Complete the investigation
+The launch command names a server and tool and restricts the requested interaction. That establishes what was requested, not independent proof that the tool call completed successfully. The `infosteal` name is a clue in this demonstration, not the reason to classify an arbitrary tool as malicious.
 
-Explain the chain and the limits of the available evidence.
+</details>
 
-1. State the legitimate campaign-summary task and observed Copilot -> Node -> JXA/shell activity.
-2. Cite the process and script evidence, identifying live observations separately from approved reference material.
-3. Qualify the current MCP configuration match; do not claim historical invocation, poisoning, rug pull, or persistence.
-4. Distinguish synthetic discovery, unestablished data-access/collection stages, no archiving/uploading in the reported run, and the unresolved prevention outcome.
+## Investigate and hunt: what ran behind the tool?
 
-You are finished when those conclusions are evidence-based. No response action, file submission, Mac provisioning, or attack execution is required.
+**Question:** What connects the campaign-summary request to local code execution?
 
-## Next step
+### Portal: follow the execution story
 
-> [!div class="nextstepaction"]
-> [Compare your findings and finish the lab](README.md#compare-your-findings)
+1. Return to **Process tree**. Follow Copilot to Node running `server.mjs` in the `northstar-rogue-mcp-infosteal-demo` directory.
+2. Continue to `osascript` with **`-l JavaScript`**, then its shell descendants. `osascript` is a macOS automation utility; here it runs JavaScript for Automation (JXA).
+3. Find the shell command mentioning **`system_profiler SPHardwareDataType`** and **Hardware UUID**. Explain why hardware discovery needs investigating in a campaign-summary task.
 
-## Related content
+![Defender process tree connecting Copilot to the Node MCP server, osascript running JavaScript, and shell activity mentioning system_profiler and Hardware UUID. User-specific path prefixes are redacted.](media/macos-mcp-process-tree.png)
 
-- [Observe Agent 365 investigation context](optional-agent-365.md)
+*Follow relationships, not just filenames: Copilot leads to the local Node implementation, then automation and shell activity. The tree establishes execution context; captured code explains the apparent hardware-discovery command.*
+
+macOS fork/exec transitions can show the same PID with different executable labels. Compare times, paths, command lines, and the portal tree; do not assume every row is an independent process or that parent PID fields alone reconstruct the whole chain.
+
+<details>
+<summary>Optional hunt: corroborate the process chain</summary>
+
+Use the same device and time window. Replace `<JXA_EXECUTABLE>` with the executable you found between Node and the shell.
+
+```kusto
+let deviceId = "<MAC_DEVICE_ID>";
+let startTime = datetime(2026-11-02T18:34:00Z);
+let endTime = datetime(2026-11-02T18:37:00Z);
+DeviceProcessEvents
+| where Timestamp between (startTime .. endTime)
+| where DeviceId == deviceId
+| where FileName in~ ("copilot", "node", "<JXA_EXECUTABLE>", "sh", "bash", "zsh")
+| project Timestamp, FileName, ProcessId, ProcessCreationTime,
+    InitiatingProcessFileName, InitiatingProcessId, ProcessCommandLine
+| order by Timestamp asc
+| take 100
+```
+
+**Hint:** Replace `<JXA_EXECUTABLE>` with `osascript`. Its command line uses `-l JavaScript`.
+
+Find the Copilot and Node instances, the JXA execution, and the shell commands that follow. This query includes nearby process activity, not only descendants; do not attribute every returned process to the case.
+
+</details>
+
+### Advanced hunting: inspect the captured code
+
+The process tree shows an apparent hardware-discovery command. Did it access the real hardware identifier? Inspect the code rather than concluding from the command name.
+
+Run this query with the same device ID:
+
+```kusto
+let deviceId = "<MAC_DEVICE_ID>";
+let startTime = datetime(2026-11-02T18:34:00Z);
+let endTime = datetime(2026-11-02T18:37:00Z);
+DeviceEvents
+| where Timestamp between (startTime .. endTime)
+| where DeviceId == deviceId
+| where ActionType == "ScriptContent"
+| extend ScriptText = tostring(parse_json(AdditionalFields).ScriptContent)
+| project Timestamp, InitiatingProcessFileName, InitiatingProcessId, ScriptText
+| order by Timestamp asc
+| take 50
+```
+
+1. Inspect the three returned rows. Expand each row with its left chevron to read **ScriptText**, or copy the text into a lab-approved local text view. Read the code as evidence; do not execute it.
+2. Find the short script that prints **`Hardware UUID: NORTHSTAR_SYNTHETIC_ONLY`**. Match its initiating Node PID **24259** and timestamp to the process tree.
+3. Inspect the longer script associated with `osascript`. Find **`synthetic-bin`**, **`PATH`**, **`/bin/sh`**, and **`task.launch`**. Its environment puts the synthetic command directory ahead of the normal utilities, explaining why a familiar command name can run the stub.
+4. If available, find the corresponding **Endpoint Script Content** event in the device timeline using the same time and process.
+
+![Advanced hunting script-content evidence showing the synthetic Hardware UUID stub and its initiating Node process.](media/macos-mcp-hunt-script.png)
+
+*This small captured script changes the interpretation: the apparent hardware-information command is part of a synthetic fixture. The longer JXA script supplies the environment and shell-execution context.*
+
+These events expose captured script fragments for this run, not necessarily the complete `server.mjs` source. The file page's **File content** tab can require an analysis submission; do not submit files or run analysis.
+
+**Explain the finding:** The observed path is **Copilot -> Node MCP implementation -> JXA -> shell**. Hunting adds evidence unavailable from a truncated process label: this recording uses synthetic discovery, including a replacement hardware-information command. Code that requests an operation is not proof that every operation completed.
+
+## Investigate: what did Defender detect and stop?
+
+**Question:** Does the AI alert's **Detected** status tell the whole protection story?
+
+1. In **Alert story**, follow the `osascript` branches to the event beginning **Defender detected and terminated active 'Behavior:MacOS/SuspInfostealExec.B'**.
+2. Expand that event's details. Record the affected process, remediation action, action result, and remediation time.
+3. Compare the AI/MCP alert's **Detected** status with the related **Suspicious 'SuspInfostealExec' behavior was blocked** alert. They describe different aspects of the same investigation.
+4. Explain what the termination event establishes, and what it does not establish about earlier execution or information theft. If details are unavailable in your refreshed case, record them as unknown.
+
+![Expanded macOS protection event showing Behavior:MacOS/SuspInfostealExec.B, quarantine, Success, and the remediation time, alongside Detected and Blocked alerts.](media/macos-mcp-protection.png)
+
+*The saved November 2 run has more than a Blocked badge: Defender explicitly reports terminating the `osascript` behavior, with remediation action `quarantine` and result `Success` at **18:35:22 UTC**. This supports a process-level protection finding, not a claim that no earlier code ran or that every possible data transfer was prevented.*
+
+<details>
+<summary>Optional portal pivot: compare the current MCP configuration</summary>
+
+Open **Assets** > **AI agents** > **Local agents** and select GitHub Copilot CLI on this case's device and account. Inspect **Local MCP servers**, where available, and compare the executable and script arguments with the Node command line.
+
+A matching current configuration supports a possible relationship. It does not independently prove which registration was used at the historical execution time. If the pane is unavailable, record that limitation and continue with the process evidence.
+
+</details>
+
+## Explain your findings
+
+1. What was the user's authorized task?
+2. Which agent, requested MCP server, and requested tool did you identify? Where did those names come from?
+3. What evidence connects Copilot to Node, JXA, and shell activity, and what did script inspection add?
+4. What does the explicit termination/remediation evidence establish? What remains unknown about tool-call completion or information theft?
+
+<details>
+<summary>Explain the finding: a tool request leads to suspicious local execution</summary>
+
+![Attack story: A campaign-summary request leads through Copilot, a Node entry script, JXA, and shell activity. Captured code shows synthetic discovery. Configuration, an alert title, and a Blocked label do not independently establish invocation, theft, or prevention.](media/macos-mcp-story.svg)
+
+Copilot's launch command requests `retrieve_campaign_brief` from `northstar-campaign-assets-infosteal` to produce a campaign summary. The process story connects the agent to `northstar-rogue-mcp-infosteal-demo/server.mjs`, then JXA and shell activity. Captured code and resolved paths identify synthetic discovery, including a stub rather than the real hardware-information utility.
+
+Defender detects activity associated with an AI agent and local MCP; it does not simply declare the requested tool's name malicious. The related November 2 protection event reports terminating `osascript` behavior and successful remediation. Neither the alert title nor these scripts establish completed information theft. Requested tool names are not a separate invocation record, and a current MCP configuration match is not authoritative historical invocation telemetry.
+
+[Editable diagram source](media/macos-mcp-story.excalidraw)
+
+</details>
+
+## Finish the lab
+
+[Compare your findings and sign out](README.md#compare-your-findings)
+
+Optional: [Explore Agent 365 investigation context](optional-agent-365.md).

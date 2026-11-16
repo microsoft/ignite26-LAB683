@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title description">
+<title id="title">A document search becomes scanning and credential access</title><desc id="description">Compare the user&apos;s goal with observed behavior, then assess each outcome separately.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#605E5C"/></marker></defs>
+<rect width="1500" height="900" fill="#ffffff"/>
+<text x="40" y="58" font-family="Segoe UI,Arial,sans-serif" font-size="34" font-weight="600" text-anchor="start" fill="#000000"><tspan x="40" dy="0">A document search becomes scanning and credential access</tspan></text>
+<text x="40" y="103" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="40" dy="0">Compare the user&apos;s goal with observed behavior, then assess each outcome separately.</tspan></text>
+<text x="40" y="155" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="start" fill="#000000"><tspan x="40" dy="0">Solid arrows summarize observed task and process relationships; branches are not a complete timeline.</tspan></text>
+<rect x="40" y="270" width="300" height="285" rx="18" fill="none" stroke="#0078D4" stroke-width="2"/>
+<circle cx="68" cy="299" r="17" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="68" y="306" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="68" dy="0">1</tspan></text>
+<circle cx="190" cy="352" r="17" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<polyline points="156,405 156,382 170,370 210,370 224,382 224,405" fill="none" stroke="#0078D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="190" y="441" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="190" dy="0">Find sales documents</tspan></text>
+<text x="190" y="481" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="190" dy="0">User requests a</tspan><tspan x="190" dy="28.35">comprehensive search</tspan></text>
+<rect x="395" y="270" width="300" height="285" rx="18" fill="none" stroke="#0078D4" stroke-width="2"/>
+<circle cx="423" cy="299" r="17" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="423" y="306" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="423" dy="0">2</tspan></text>
+<rect x="506" y="341" width="78" height="60" rx="12" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<circle cx="530" cy="366" r="5" fill="none" stroke="#0078D4" stroke-width="2"/>
+<circle cx="560" cy="366" r="5" fill="none" stroke="#0078D4" stroke-width="2"/>
+<polyline points="530,386 560,386" fill="none" stroke="#0078D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="545,341 545,328" fill="none" stroke="#0078D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="545" cy="323" r="5" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="545" y="441" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="545" dy="0">Copilot</tspan></text>
+<text x="545" y="481" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="545" dy="0">Launches PowerShell</tspan><tspan x="545" dy="28.35">scripts beyond the</tspan><tspan x="545" dy="28.35">document-search task</tspan></text>
+<rect x="750" y="270" width="300" height="285" rx="18" fill="none" stroke="#5C2D91" stroke-width="2"/>
+<circle cx="778" cy="299" r="17" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2"/>
+<text x="778" y="306" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="778" dy="0">3</tspan></text>
+<rect x="857" y="336" width="86" height="62" rx="5" fill="#E8DAEF" stroke="#5C2D91" stroke-width="2"/>
+<polyline points="875,357 888,367 875,377" fill="none" stroke="#5C2D91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="901,378 924,378" fill="none" stroke="#5C2D91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="900" y="441" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="900" dy="0">PowerShell activity</tspan></text>
+<text x="900" y="481" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="900" dy="0">Scan, file-search, and</tspan><tspan x="900" dy="28.35">credential-access</tspan><tspan x="900" dy="28.35">script launches</tspan></text>
+<rect x="1150" y="195" width="310" height="245" rx="18" fill="none" stroke="#F7630C" stroke-width="2"/>
+<circle cx="1178" cy="224" r="17" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<text x="1178" y="231" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1178" dy="0">4a</tspan></text>
+<rect x="1288" y="259" width="34" height="24" rx="4" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<polyline points="1305,283 1305,300 1267,300 1343,300" fill="none" stroke="#F7630C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1267,300 1267,313" fill="none" stroke="#F7630C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1254" y="313" width="26" height="20" rx="3" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<polyline points="1305,300 1305,313" fill="none" stroke="#F7630C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1292" y="313" width="26" height="20" rx="3" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<polyline points="1343,300 1343,313" fill="none" stroke="#F7630C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1330" y="313" width="26" height="20" rx="3" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<text x="1305" y="366" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1305" dy="0">Network scanning</tspan></text>
+<text x="1305" y="406" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="1305" dy="0">Mostly failed connections;</tspan><tspan x="1305" dy="28.35">TCP success is not a login</tspan></text>
+<rect x="1150" y="470" width="310" height="245" rx="18" fill="none" stroke="#107C10" stroke-width="2"/>
+<circle cx="1178" cy="499" r="17" fill="#DFF6DD" stroke="#107C10" stroke-width="2"/>
+<text x="1178" y="506" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1178" dy="0">4b</tspan></text>
+<polyline points="1305,527 1339,540 1335,579 1322,596 1305,608 1288,596 1275,579 1271,540 1305,527" fill="none" stroke="#107C10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1292,556 1318,582" fill="none" stroke="#107C10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1318,556 1292,582" fill="none" stroke="#107C10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1305" y="641" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1305" dy="0">LSASS-related attempt</tspan></text>
+<text x="1305" y="681" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="1305" dy="0">AMSI prevention is</tspan><tspan x="1305" dy="28.35">explicitly recorded</tspan></text>
+<polyline points="342,412 391,412" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="697,412 746,412" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1053,412 1098,412 1098,318 1146,318" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="1098,412 1098,593 1146,593" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="40" y="730" width="690" height="130" rx="18" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="62" y="766" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="start" fill="#000000"><tspan x="62" dy="0">Portal: identify the departure from the task</tspan></text>
+<text x="62" y="803" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="62" dy="0">Read the user&apos;s request and inspect the child scripts.</tspan><tspan x="62" dy="29.700000000000003">Launching a script does not prove it succeeded.</tspan></text>
+<rect x="770" y="730" width="690" height="130" rx="18" fill="#FFF4CE" stroke="#F7630C" stroke-width="2"/>
+<text x="792" y="766" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="start" fill="#000000"><tspan x="792" dy="0">Hunt: measure and distinguish outcomes</tspan></text>
+<text x="792" y="803" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="792" dy="0">Aggregate scan results; inspect LSASS prevention.</tspan><tspan x="792" dy="29.700000000000003">Do not describe the entire sequence as blocked.</tspan></text>
+<text x="40" y="888" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="start" fill="#000000"><tspan x="40" dy="0">Read each branch separately: observed scanning, attempted credential access, and a specific recorded prevention.</tspan></text>
+</svg>

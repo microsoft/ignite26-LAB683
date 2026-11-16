@@ -19,14 +19,15 @@ This delivery model supersedes the earlier per-learner Windows VM and live-attac
 ## Required investigation flow
 
 1. Launch the supplied lab experience and sign in with an assigned account.
-2. Review the prepared Windows XPIA alert and recorded prevention evidence.
-3. Reconstruct Windows agent misalignment through incident and endpoint evidence.
-4. Investigate the macOS MCP execution chain, subject to the readiness decision.
-5. Compare evidence and confidence across the scenarios.
-6. Optionally observe available Agent 365 investigation context.
-7. Sign out and end the lab session.
+2. Discover local agent instances in the portal and compare their inventory observations with Advanced Hunting.
+3. Investigate Windows XPIA in the portal and corroborate the protection evidence with a supplied hunt.
+4. Reconstruct Windows misalignment, then measure scanning and inspect credential-access protection with focused hunts.
+5. Trace the macOS MCP execution chain and inspect captured script content, subject to the readiness decision.
+6. Compare evidence and confidence across the scenarios.
+7. Optionally observe available Agent 365 investigation context.
+8. Sign out and end the lab session.
 
-The required path is Defender-led. Agent 365 extra credit does not require a separate administrative configuration exercise.
+Every investigation follows question -> portal evidence -> focused hunt -> explained finding. Query scaffolding decreases across the three scenarios. The required path is Defender-led. Agent 365 extra credit does not require a separate administrative configuration exercise.
 
 ## Shared-state boundaries
 
@@ -36,10 +37,10 @@ Isolation, remediation, Live Response, indicators, policy changes, and live resp
 
 ## Readiness boundaries
 
-- The October 30 macOS MCP report replaces the poisoned-brief content, not the owner readiness decision. Validate the exact replacement investigation with ordinary attendee accounts before delivery.
+- The macOS exercise uses the November 2 replay, independently checked through read-only hunting on November 15. The October 30 report is background, not proof of the replay's outcome or ordinary attendee access. Validate the exact replacement investigation with attendee accounts before delivery.
 - Current configuration matching does not prove historical MCP invocation; a Blocked label does not prove completed discovery was prevented. Do not infer exfiltration from the scenario name.
 - A working Windows agent entity does not establish macOS support or universal identity correlation.
 - Source agent IDs, Entra agent IDs, and other identifiers must not be treated as interchangeable.
-- Exact LAB683 links and evidence windows belong in controlled delivery material. Sanitized screenshots can be committed only after approval.
+- Tenant-specific links and identifiers belong in controlled delivery material. Public pages provide UTC windows and process locators; learners copy device IDs from their selected case. Refresh those references together when replaying evidence. Sanitized screenshots can be committed only after approval.
 
 See the [content plan](content-plan.md) for remaining authoring and validation work.

@@ -1,96 +1,92 @@
 ---
-title: Start discovering local AI agents in Microsoft Defender
-description: Discover local AI agents in Microsoft Defender, compare instance configuration, and correlate alert evidence with inventory before the LAB683 investigations.
+title: Discover local AI agents in Microsoft Defender
+description: Learn how Defender recognizes local AI agents and connects their host processes, devices, and accounts to the investigations that follow.
 author: j0shbregman
 ms.author: j0shbregman
 ms.service: microsoft-defender-xdr
 ms.topic: how-to
-ms.custom: msecd-doc-authoring-1032
-ms.date: 10/23/2026
+ms.date: 11/15/2026
 ai-usage: ai-generated
-#customer intent: As a SOC analyst, I want to access the prepared lab evidence so that I can investigate local AI agent threats.
 ---
 
-# Start discovering local AI agents in Microsoft Defender
+# Discover local AI agents in Microsoft Defender
 
-Use your assigned Microsoft Defender account to discover local agents and run an inventory hunt before the three investigations. Check the prerequisites before signing in. The evidence already exists; you do not install software or generate attacks. Allow 5 minutes for sign-in and 12 minutes for discovery and hunting.
+Before you can investigate an AI agent, you need to recognize it in the activity on a device. Defender identifies supported local agents and connects them to their device, account, and configuration. That context is the starting point for the investigations that follow.
 
-## Prerequisites
+**Your mission:** Identify an agent's host process, device, and account in the portal, then find the same context in an inventory hunt. You will use that process context to follow the agent's actions in the next three investigations. Allow 5 minutes for sign-in and 10 minutes for discovery.
 
-- An assigned LAB683 Skillable session.
-- Individual lab credentials supplied securely through the lab experience.
-- Assigned access to read the lab's alerts, devices, and agent inventory and to run Advanced Hunting queries.
-- Scenario references supplied in the controlled instructions.
+## Why discovery matters to the investigations
 
-**Tester draft:** The walkthrough uses observed portal controls and API-validated evidence. The lab team still needs to rehearse it with attendee accounts and finish the controlled scenario reference sheet.
+For process-based discovery, Defender recognizes a supported agent when it observes the agent's process running on an onboarded device. In this lab, look for GitHub Copilot CLI and its related process. Instead of seeing only an executable, you can start an investigation knowing that it hosts an AI agent.
 
-## Open the assigned environment
+You will then follow that agent's process into the endpoint evidence: its child processes, commands, network connections, and associated alerts. Discovery answers **"What agent is this, and where does it run?"** The investigations answer **"What did this particular execution do, and how did Defender respond?"**
 
-Sign in to the prepared tenant and locate the reference values that keep your investigation scoped to the lab.
+An inventory entry is not a single process execution. Defender groups a local agent by **agent type, device, and user**; several runs can belong to the same entry. In the later exercises, match the device, PID, and process creation time to identify the execution you are investigating.
 
-1. Launch LAB683 from the event-provided Skillable entry point.
-2. Open the supplied browser experience and sign in to [Microsoft Defender](https://security.microsoft.com) with your assigned lab account.
-3. Confirm you are in the lab environment identified by the instructor. If an existing personal or production session opens, stop and ask for help.
-4. Locate the **Scenario reference sheet** in the controlled lab instructions. It must supply the following values for each investigation:
+There are two investigation entry points: start with a discovered agent and look for suspicious activity on its device, or start with an endpoint alert and trace its process ancestry back to an agent. An alert does not need "AI" in its title to be relevant, but sharing a device or incident is not enough to establish agent involvement. [Scenario 2](02-agent-misalignment.md#triage-why-investigate-this-as-agent-activity) practices that distinction and includes a candidate-alert hunt that does not require knowing an alert's title.
 
-   | Value | Why you need it |
-   |---|---|
-   | Alert link and alert ID | Open the correct starting evidence |
-   | Device link and device ID | Distinguish devices that share a display name |
-   | Start and end in UTC, plus portal-local equivalents | Apply the correct query and timeline windows |
-   | Agent process ID and creation time | Select the correct process instance |
-   | Prompt locator for Windows; script/timeline locator for macOS | Distinguish similarly named evidence events |
-   | macOS run-evidence reference and per-target action/result locator | Compare completed synthetic steps with the displayed protection status |
+Defender supports discovery of **more than 50 local AI agent types**, including command-line agents, desktop applications, agentic IDEs, and VS Code extensions. Coverage evolves: open the public [AI agent support matrix](https://learn.microsoft.com/en-us/defender-endpoint/ai-agent-support-matrix#ai-agent-discovery-support) for the current agent list and its Windows, macOS, and MCP configuration coverage. Discovery support does not automatically mean runtime protection is supported.
 
-5. If a value is missing, ask the instructor for it. Do not substitute your own tenant, the current time, or another device with the same name.
-6. If a view is inaccessible, ask the lab team to check access. Do not change permissions or use an administrator account.
+Discovery methods also vary. Some VS Code agents are discovered from periodically collected installed-extension data rather than a running extension. A discovered agent does not by itself prove that a user submitted a prompt or successfully accessed an AI service. See [how local agent discovery works](https://learn.microsoft.com/en-us/defender-endpoint/local-agent-discovery-overview#local-ai-agent-discovery-on-endpoints).
 
-## Prepare your investigation notes
+## Sign in to the lab
 
-Keep observations separate from hypotheses so your conclusions can be traced to evidence.
+1. Launch the assigned LAB683 environment. If it provides a VM, sign in with the supplied VM credentials and open its browser.
+2. Open [Microsoft Defender](https://security.microsoft.com) and sign in with your assigned lab account. Use the sign-in method supplied by the lab, such as a Temporary Access Pass.
+3. Confirm that you are in the assigned lab tenant. If a personal or production account is already signed in, sign out before continuing.
+4. Open a separate browser tab for these instructions. Keep Defender open throughout the lab.
 
-1. For each scenario, record the legitimate user goal, suspicious behavior, supporting evidence, and observed outcome.
-2. Separate direct observations from hypotheses. An alert title alone does not prove that every described action executed.
-3. Treat shared incidents and devices as read-only. Do not change status, assignment, classification, policies, or endpoint state.
-4. Keep credentials and sensitive identifiers out of notes and screenshots.
-
-You are ready when the assigned account opens the lab portal and the first scenario's prepared evidence is accessible.
+If you cannot access the assigned environment, contact the lab team. Do not use another tenant or change account permissions.
 
 ## Discover the local agents
 
-Use inventory to establish which agent instance you are investigating.
+**Question: How does Defender identify the agent behind a process on a device?**
 
-1. Expand **Assets** in the Defender navigation. If the full navigation is hidden, select **Show navigation** first.
-2. Select **AI agents**, then **Local agents**.
-   If the initial **Agents** view displays **Something went wrong** and the tabs are unavailable, open the instructor-provided **Local agents inventory** link. That direct local view was usable when the default view failed. If it also fails, report the issue and continue with the inventory hunt below; record the UI step as incomplete.
-3. Locate **GitHub Copilot CLI** on the Windows or Mac device listed in your reference sheet. An agent name alone is not sufficient: compare device and account context.
-4. Select the row to open its details pane.
-5. Review the agent's related process and source agent identity. Review auto-approval, trust, risk, and MCP information where the pane exposes them.
-6. Compare another instance if one is present. Record a configuration difference, or state that the relevant field is unavailable.
-7. Do not interpret a configured MCP entry as proof that the agent invoked it. Do not interpret an empty field as a safe configuration.
+1. In Defender, expand **Assets** > **AI agents** and select **Local agents**. Select **Show navigation** first if the navigation is collapsed.
+2. Find **GitHub Copilot CLI**. Open an entry and record its agent name, device, account, and **Related process**. This links the recognizable agent to the host process you will investigate later; the application name alone does not identify a particular execution.
+3. Inspect auto-approval, trust, and MCP configuration where available. Which details describe what the agent is configured to do, rather than what it has actually done?
+4. Compare a Windows entry with the macOS entry. Record each related process and one configuration difference, or identify a field that is not available.
+5. If **Open agent page** is available, inspect it, then return to the inventory. You do not need its map or an alerts tab to complete this lab.
 
-**Expected result:** You can distinguish an agent application from an instance associated with a device/account. Inventory does not reconstruct the agent's conversation.
+<details>
+<summary>Compare the Windows and macOS related-process views</summary>
 
-If **Open Agent page** is available, you can inspect it, but the required path does not depend on its map or an **Incidents and alerts** tab loading.
+These captures show the lab's actual agent details, with device and account information redacted and identifiers cropped out. The blue outline highlights **Related process**.
 
-## Run an inventory hunt
+**Windows:** Defender associates GitHub Copilot CLI with `copilot.exe`.
 
-This query shows the latest observed profile for each local agent in the selected window.
+![Windows agent details showing GitHub Copilot CLI with copilot.exe outlined as the related process.](media/discovery-windows-related-process.png)
 
-1. Open **Advanced hunting** from the navigation. Alternatively, use **Go hunt** from the agent pane if available.
-2. If a guided-hunting tour opens, select **Not now**.
-3. Open a **New query** tab and use the KQL editor. If your account opens a query-builder view instead, ask the instructor to help you open the advanced query editor.
-4. Replace the editor contents with the following query.
-5. Set the hunting time range to include the last seven days, then select **Run query**.
+**macOS:** Defender associates GitHub Copilot CLI with `copilot`.
+
+![macOS agent details showing GitHub Copilot CLI with copilot outlined as the related process.](media/discovery-macos-related-process.png)
+
+The agent name is the same, but its process name differs across these entries. Use the values in your own inventory when investigating. In the macOS scenario, distinguish this agent host from the Node process that hosts its local MCP server; follow the process relationships rather than treating every tool process as the agent itself.
+
+These are inventory observations, not proof of a particular execution or a safe outcome. Configuration and risk values can change.
+
+</details>
+
+If the default Agents view fails before the tabs appear, use the lab team's direct **Local agents inventory** link. If neither route works, continue with the inventory hunt and record that the portal step was unavailable.
+
+Do not treat an MCP configuration entry as proof that a tool was called. You will look for execution evidence later.
+
+## Hunt: compare the inventory observations
+
+**Question: Can you find the same instances in the hunting data?**
+
+1. Open **Investigation & response** > **Hunting** > **Advanced hunting**, or select **Go hunt** from an agent pane.
+2. Dismiss any introductory tour with **Not now**. Open **New query** and select **Query in editor** if prompted.
+3. Set the time picker to **Last 30 days**, paste the query below, and select **Run query**.
 
 ```kusto
 AgentsInfo
-| where Timestamp > ago(7d)
+| where Timestamp > ago(30d)
 | where Platform == "LocalAgents"
 | summarize arg_max(Timestamp, *) by AgentId
 | where LifecycleStatus !in ("Deleted", "Uninstalled")
 | extend Local = RawAgentInfo.localAgentMetadata
-| project Timestamp, AgentId, Name, SourceAgentId, Version, LifecycleStatus,
+| project Timestamp, AgentId, Name, SourceAgentId, Version,
     DeviceName = tostring(Local.deviceName),
     RelatedProcess = tostring(Local.relatedProcess),
     AutoApprove = tostring(Local.autoApprove),
@@ -99,57 +95,41 @@ AgentsInfo
 | take 50
 ```
 
-6. In the results, compare **Name**, **DeviceName**, **RelatedProcess**, and **AutoApprove**.
-7. Note that **AgentId** is the profile GUID, while **SourceAgentId** is the source identity. Do not join these interchangeably.
-8. If exactly 50 rows are returned, narrow the investigation; this is a capped result, not a complete inventory.
+4. Find an entry you inspected in the portal. Match its agent name, device, and `RelatedProcess` with your notes. Explain how recognizing that host process will help you follow the agent in a process tree or device timeline.
+5. Explain the `summarize arg_max(Timestamp, *) by AgentId` line: it selects the latest observation per profile rather than displaying every historical observation.
+6. Notice the observation time. An inventory record describes configuration observed at that time, not necessarily configuration during an older attack.
 
-**Expected result:** In the prepared dataset, the Windows Copilot profiles report auto-approval as `"true"` and the Mac CLI profile reports `"false"`. These are profile observations, not proof of what every individual command did. Values and row counts can change when the dataset is refreshed.
+If the query returns 50 rows, narrow its scope before treating it as a complete inventory. `take 50` is this query's result limit, not the number of agent types Defender supports. Do not use a fixed profile count as the success criterion; inventory can change.
 
-## Correlate an alert with its discovered agent
+## Keep your investigation scoped
 
-This second query supports alert-to-agent correlation. Its October 23 Mac baseline belongs to the earlier scenario, not the replacement MCP run.
+The next exercises use historical evidence. Follow these conventions throughout:
 
-1. In a **New query** tab, paste the query below.
-2. Replace `<SCENARIO_ALERT_ID>` with the Windows XPIA alert ID from the reference sheet.
-3. Set the hunting time range to include both the prepared alert and recent profile observations, then select **Run query**.
+- **Device:** Copy the device ID from the selected alert's device page. If it is not shown in details, the device page address contains it after `/machines/v2/`. Do not copy the tenant's `tid` value. The two Windows runs have different device IDs even though their display names match.
+- **Time:** Queries use explicit UTC windows. Portal timeline fields may be labeled **Local**; convert the UTC window to the timezone shown by your browser/VM. Do not assume a fixed Pacific offset.
+- **Query inputs:** Replace every `<...>` input before running. Keep device IDs inside quotation marks. Leave `datetime(...)` values unquoted.
+- **Missing results:** Check the account, device ID, time picker, and evidence retention before drawing conclusions. A time picker narrower than the query window can exclude the events.
+- **Result limits:** If results reach a query's `take` limit, narrow or partition the window.
 
-```kusto
-let scenarioAlertId = "<SCENARIO_ALERT_ID>";
-let profiles =
-    AgentsInfo
-    | where Platform == "LocalAgents"
-    | summarize arg_max(Timestamp, *) by AgentId
-    | project ProfileAgentId = tostring(AgentId), SourceAgentId, Name,
-        EntraAgentID, RawAgentInfo;
-AlertEvidence
-| where AlertId == scenarioAlertId
-| where EntityType == "AIAgent"
-| extend SourceAgentId = tostring(parse_json(AdditionalFields).AgentId)
-| distinct AlertId, SourceAgentId
-| join kind=leftouter profiles on SourceAgentId
-| project AlertId, SourceAgentId, ProfileAgentId, Name, EntraAgentID,
-    DeviceName = tostring(RawAgentInfo.localAgentMetadata.deviceName)
-| take 50
-```
+For each investigation, keep four short notes: **user goal, observed behavior, Defender response, and supporting evidence**. Record uncertainty rather than guessing.
 
-4. Confirm the matching name and device. An empty profile side means the correlation was not established; ask for help rather than invent another join.
-5. Keep the query open. Reuse it for the replacement Mac alert only if the lab team has validated that run's `AIAgent` evidence and supplied its reference values; an empty join does not negate the observed process chain.
+## Explain your findings
 
-**Expected result:** The prepared Windows XPIA alert correlates to a GitHub Copilot CLI profile through the source identity. The October 23 baseline also correlated the earlier Mac alert; both matching **EntraAgentID** fields were empty. That result does not validate correlation for the replacement MCP run, whose required path uses process and device/account evidence.
+Before continuing, answer:
 
-## Use the queries safely
+1. Which host process did Defender associate with GitHub Copilot CLI?
+2. Why do the device and account matter when identifying an agent? What additional details identify a particular execution?
+3. How will you use that process context in the next investigations, and why can't inventory alone tell you whether a command executed?
 
-Apply the reference values and time windows consistently to avoid misleading results.
+<details>
+<summary>Explain the finding: connect the agent to its process context</summary>
 
-1. Replace every `<...>` value in later queries with the corresponding reference-sheet value before running.
-2. Enter UTC timestamps such as `2026-10-23T03:00:00Z` into KQL `datetime(...)` expressions. For portal fields labeled **(Local)**, use the separately supplied local equivalent.
-3. Ensure the hunting time picker includes the query's explicit window. A narrower picker can exclude matching events.
-4. If results are empty, check the account, device ID, window, and ingestion state. Empty results alone do not establish prevention.
-5. If results reach a query's `take` limit, narrow or partition the window before drawing a conclusion.
+Defender makes a supported local agent recognizable as an asset, associated with its device, user, and host process. The portal and `AgentsInfo` show that discovery context. Endpoint process, network, and alert evidence let you investigate a particular run and its descendants.
 
-Full prompt and response bodies shown in the portal were not exposed by the retrieved Advanced Hunting records. Use the prompt panels in the following exercises; do not expect these queries to return a full conversation.
+That is the bridge to the rest of the lab: identify the agent, locate the correct process execution, and follow its actions. Configuration describes what is set up; execution evidence shows what happened. Neither discovery nor a trusted-process setting proves that all subsequent behavior is safe.
+
+</details>
 
 ## Next step
 
-> [!div class="nextstepaction"]
-> [Investigate Windows XPIA](01-windows-xpia.md)
+[Investigate a Windows prompt-injection attempt](01-windows-xpia.md)

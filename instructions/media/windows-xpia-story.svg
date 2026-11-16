@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title description">
+<title id="title">A malicious instruction tries to turn the agent into a courier</title><desc id="description">Follow the attempted redirection, then identify the evidence supporting prevention.
+Solid arrows show encountered content; dashed arrows show requested actions, not observed theft.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#605E5C"/></marker></defs>
+<rect width="1500" height="900" fill="#ffffff"/>
+<text x="40" y="58" font-family="Segoe UI,Arial,sans-serif" font-size="34" font-weight="600" text-anchor="start" fill="#000000"><tspan x="40" dy="0">A malicious instruction tries to turn the agent into a courier</tspan></text>
+<text x="40" y="103" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="40" dy="0">Follow the attempted redirection, then identify the evidence supporting prevention.</tspan></text>
+<polyline points="45,154 95,154" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="110" y="161" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" fill="#000000"><tspan x="110" dy="0">Encountered content</tspan></text>
+<polyline points="430,154 480,154" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7" marker-end="url(#arrow)"/>
+<text x="495" y="161" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" fill="#000000"><tspan x="495" dy="0">Requested action; not observed theft</tspan></text>
+<rect x="40" y="225" width="310" height="285" rx="18" fill="none" stroke="#D13438" stroke-width="2"/>
+<circle cx="68" cy="254" r="17" fill="#FDE7E9" stroke="#D13438" stroke-width="2"/>
+<text x="68" y="261" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="68" dy="0">1</tspan></text>
+<rect x="166" y="284" width="58" height="77" rx="4" fill="#FDE7E9" stroke="#D13438" stroke-width="2"/>
+<polyline points="178,307 212,307" fill="none" stroke="#D13438" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="178,323 212,323" fill="none" stroke="#D13438" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="178,339 212,339" fill="none" stroke="#D13438" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="195" y="396" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="195" dy="0">Malicious content</tspan></text>
+<text x="195" y="436" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="195" dy="0">Claims to be a system</tspan><tspan x="195" dy="28.35">instruction; says to hide</tspan><tspan x="195" dy="28.35">the requested activity</tspan></text>
+<rect x="410" y="225" width="310" height="285" rx="18" fill="none" stroke="#0078D4" stroke-width="2"/>
+<circle cx="438" cy="254" r="17" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="438" y="261" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="438" dy="0">2</tspan></text>
+<rect x="526" y="296" width="78" height="60" rx="12" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<circle cx="550" cy="321" r="5" fill="none" stroke="#0078D4" stroke-width="2"/>
+<circle cx="580" cy="321" r="5" fill="none" stroke="#0078D4" stroke-width="2"/>
+<polyline points="550,341 580,341" fill="none" stroke="#0078D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="565,296 565,283" fill="none" stroke="#0078D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="565" cy="278" r="5" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="565" y="396" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="565" dy="0">Copilot encounters it</tspan></text>
+<text x="565" y="436" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="565" dy="0">Untrusted content attempts</tspan><tspan x="565" dy="28.35">to redirect the agent&apos;s</tspan><tspan x="565" dy="28.35">existing work</tspan></text>
+<rect x="780" y="225" width="310" height="285" rx="18" fill="none" stroke="#605E5C" stroke-width="2"/>
+<circle cx="808" cy="254" r="17" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
+<text x="808" y="261" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="808" dy="0">3</tspan></text>
+<rect x="906" y="284" width="58" height="77" rx="4" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
+<polyline points="918,307 952,307" fill="none" stroke="#605E5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="918,323 952,323" fill="none" stroke="#605E5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="918,339 952,339" fill="none" stroke="#605E5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="935" y="396" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="935" dy="0">Credential-file access</tspan></text>
+<text x="935" y="436" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="935" dy="0">Instruction requests</tspan><tspan x="935" dy="28.35">.env and cloud</tspan><tspan x="935" dy="28.35">credential-file contents</tspan></text>
+<rect x="1150" y="225" width="310" height="285" rx="18" fill="none" stroke="#605E5C" stroke-width="2"/>
+<circle cx="1178" cy="254" r="17" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
+<text x="1178" y="261" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1178" dy="0">4</tspan></text>
+<rect x="1288" y="289" width="34" height="24" rx="4" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
+<polyline points="1305,313 1305,330 1267,330 1343,330" fill="none" stroke="#605E5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="1267,330 1267,343" fill="none" stroke="#605E5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1254" y="343" width="26" height="20" rx="3" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
+<polyline points="1305,330 1305,343" fill="none" stroke="#605E5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1292" y="343" width="26" height="20" rx="3" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
+<polyline points="1343,330 1343,343" fill="none" stroke="#605E5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1330" y="343" width="26" height="20" rx="3" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
+<text x="1305" y="396" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1305" dy="0">External transfer</tspan></text>
+<text x="1305" y="436" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="1305" dy="0">Instruction requests</tspan><tspan x="1305" dy="28.35">sending the contents</tspan><tspan x="1305" dy="28.35">to a test destination</tspan></text>
+<polyline points="352,366 406,366" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="723,366 776,366" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7" marker-end="url(#arrow)"/>
+<polyline points="1093,366 1146,366" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7" marker-end="url(#arrow)"/>
+<polyline points="750,550 784,563 780,602 767,619 750,631 733,619 720,602 716,563 750,550" fill="none" stroke="#107C10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="737,579 763,605" fill="none" stroke="#107C10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="763,579 737,605" fill="none" stroke="#107C10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="815" y="585" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="600" text-anchor="start" fill="#000000"><tspan x="815" dy="0">Defender reports prompt-stream remediation</tspan></text>
+<text x="815" y="621" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="815" dy="0">Protection evidence, not proof of completed theft.</tspan></text>
+<rect x="40" y="705" width="690" height="130" rx="18" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<text x="62" y="741" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="start" fill="#000000"><tspan x="62" dy="0">Portal: establish the attempted redirection</tspan></text>
+<text x="62" y="778" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="62" dy="0">Read the prompt, match the Copilot process,</tspan><tspan x="62" dy="29.700000000000003">and inspect the blocked-injection story.</tspan></text>
+<rect x="770" y="705" width="690" height="130" rx="18" fill="#DFF6DD" stroke="#107C10" stroke-width="2"/>
+<text x="792" y="741" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="start" fill="#000000"><tspan x="792" dy="0">Hunt: corroborate the protection result</tspan></text>
+<text x="792" y="778" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" text-anchor="start" fill="#000000"><tspan x="792" dy="0">The netpromptstream AV record reports remediation.</tspan><tspan x="792" dy="29.700000000000003">A missing network event alone is not proof.</tspan></text>
+<text x="40" y="874" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="400" text-anchor="start" fill="#000000"><tspan x="40" dy="0">Simplified analyst explanation. Numbering follows the story, not individual telemetry records.</tspan></text>
+</svg>
