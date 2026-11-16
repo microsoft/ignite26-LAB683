@@ -9,7 +9,7 @@ Solid arrows show encountered content; dashed arrows show requested actions, not
 <text x="110" y="161" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" fill="#000000"><tspan x="110" dy="0">Encountered content</tspan></text>
 <polyline points="430,154 480,154" fill="none" stroke="#605E5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7" marker-end="url(#arrow)"/>
 <text x="495" y="161" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" text-anchor="start" fill="#000000"><tspan x="495" dy="0">Requested action; not observed theft</tspan></text>
-<rect x="40" y="225" width="310" height="285" rx="18" fill="#FDE7E9" stroke="#D13438" stroke-width="2"/>
+<rect x="40" y="225" width="310" height="285" rx="18" fill="none" stroke="#D13438" stroke-width="2"/>
 <circle cx="68" cy="254" r="17" fill="#FDE7E9" stroke="#D13438" stroke-width="2"/>
 <text x="68" y="261" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="68" dy="0">1</tspan></text>
 <rect x="166" y="284" width="58" height="77" rx="4" fill="#FDE7E9" stroke="#D13438" stroke-width="2"/>
@@ -18,7 +18,7 @@ Solid arrows show encountered content; dashed arrows show requested actions, not
 <polyline points="178,339 212,339" fill="none" stroke="#D13438" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="195" y="396" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="195" dy="0">Malicious content</tspan></text>
 <text x="195" y="436" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="195" dy="0">Claims to be a system</tspan><tspan x="195" dy="28.35">instruction; says to hide</tspan><tspan x="195" dy="28.35">the requested activity</tspan></text>
-<rect x="410" y="225" width="310" height="285" rx="18" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
+<rect x="410" y="225" width="310" height="285" rx="18" fill="none" stroke="#0078D4" stroke-width="2"/>
 <circle cx="438" cy="254" r="17" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
 <text x="438" y="261" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="438" dy="0">2</tspan></text>
 <rect x="526" y="296" width="78" height="60" rx="12" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
@@ -29,7 +29,7 @@ Solid arrows show encountered content; dashed arrows show requested actions, not
 <circle cx="565" cy="278" r="5" fill="#CFE4FA" stroke="#0078D4" stroke-width="2"/>
 <text x="565" y="396" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="565" dy="0">Copilot encounters it</tspan></text>
 <text x="565" y="436" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="565" dy="0">Untrusted content attempts</tspan><tspan x="565" dy="28.35">to redirect the agent&apos;s</tspan><tspan x="565" dy="28.35">existing work</tspan></text>
-<rect x="780" y="225" width="310" height="285" rx="18" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
+<rect x="780" y="225" width="310" height="285" rx="18" fill="none" stroke="#605E5C" stroke-width="2"/>
 <circle cx="808" cy="254" r="17" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
 <text x="808" y="261" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="808" dy="0">3</tspan></text>
 <rect x="906" y="284" width="58" height="77" rx="4" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
@@ -38,7 +38,7 @@ Solid arrows show encountered content; dashed arrows show requested actions, not
 <polyline points="918,339 952,339" fill="none" stroke="#605E5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="935" y="396" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="935" dy="0">Credential-file access</tspan></text>
 <text x="935" y="436" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#000000"><tspan x="935" dy="0">Instruction requests</tspan><tspan x="935" dy="28.35">.env and cloud</tspan><tspan x="935" dy="28.35">credential-file contents</tspan></text>
-<rect x="1150" y="225" width="310" height="285" rx="18" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
+<rect x="1150" y="225" width="310" height="285" rx="18" fill="none" stroke="#605E5C" stroke-width="2"/>
 <circle cx="1178" cy="254" r="17" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
 <text x="1178" y="261" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#000000"><tspan x="1178" dy="0">4</tspan></text>
 <rect x="1288" y="289" width="34" height="24" rx="4" fill="#F3F2F1" stroke="#605E5C" stroke-width="2"/>
