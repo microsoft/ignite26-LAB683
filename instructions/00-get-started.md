@@ -43,8 +43,27 @@ If you cannot access the assigned environment, contact the lab team. Do not use 
 1. In Defender, expand **Assets** > **AI agents** and select **Local agents**. Select **Show navigation** first if the navigation is collapsed.
 2. Find **GitHub Copilot CLI**. Open an entry and record its agent name, device, account, and **Related process**. This links the recognizable agent to the host process you will investigate later; the application name alone does not identify a particular execution.
 3. Inspect auto-approval, trust, and MCP configuration where available. Which details describe what the agent is configured to do, rather than what it has actually done?
-4. Compare a second instance. Record one configuration difference, or identify a field that is not available.
+4. Compare a Windows entry with the macOS entry. Record each related process and one configuration difference, or identify a field that is not available.
 5. If **Open agent page** is available, inspect it, then return to the inventory. You do not need its map or an alerts tab to complete this lab.
+
+<details>
+<summary>Compare the Windows and macOS related-process views</summary>
+
+These captures show the lab's actual agent details, with device and account information redacted and identifiers cropped out. The blue outline highlights **Related process**.
+
+**Windows:** Defender associates GitHub Copilot CLI with `copilot.exe`.
+
+![Windows agent details showing GitHub Copilot CLI with copilot.exe outlined as the related process.](media/discovery-windows-related-process.png)
+
+**macOS:** Defender associates GitHub Copilot CLI with `copilot`.
+
+![macOS agent details showing GitHub Copilot CLI with copilot outlined as the related process.](media/discovery-macos-related-process.png)
+
+The agent name is the same, but its process name differs across these entries. Use the values in your own inventory when investigating. In the macOS scenario, distinguish this agent host from the Node process that hosts its local MCP server; follow the process relationships rather than treating every tool process as the agent itself.
+
+These are inventory observations, not proof of a particular execution or a safe outcome. Configuration and risk values can change.
+
+</details>
 
 If the default Agents view fails before the tabs appear, use the lab team's direct **Local agents inventory** link. If neither route works, continue with the inventory hunt and record that the portal step was unavailable.
 
