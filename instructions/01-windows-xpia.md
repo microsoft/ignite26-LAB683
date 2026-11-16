@@ -22,7 +22,7 @@ In this case, a Windows coding agent encounters an instruction requesting access
 Use the lab team's Windows XPIA link if supplied. Otherwise:
 
 1. Open **Investigation & response** > **Incidents & alerts** > **Alerts**.
-2. Set the time range to include October 23, 2026. Find **Suspicious AI prompt injection blocked** around **03:05 UTC**.
+2. Set the time range to include October 23, 2026. Find **Suspicious AI prompt injection blocked** within **03:00-03:30 UTC**.
 3. Open the alert. Compare its ID with the lab's case link if available, then inspect the affected device and **GitHub Copilot CLI** evidence.
 4. Open the device in a separate tab and copy its device ID for the query below.
 
@@ -33,20 +33,36 @@ The documented run is scoped as follows. If the lab team supplies a refreshed ru
 | Investigation window | October 23, 2026, 03:00-03:30 UTC |
 | Agent process | `copilot.exe`, PID 4984 |
 | Process creation | October 23, 2026, 03:04:13 UTC |
+| Captured malicious prompt call | October 23, 2026, 03:13:11 UTC |
 
 The portal can display a different incident-related heading for the selected alert. Use the alert ID, process, and blocked-injection story node to stay on the correct case. If the run is unavailable, ask the lab team rather than substituting an unrelated alert.
 
+The screenshots below use local time at UTC-04:00: **October 22, 11:13:11 PM** is **October 23, 03:13:11 UTC**. Keep the UTC values above for hunting queries. These are cropped live portal captures; numbered headings and blue outlines are lab annotations.
+
 ## Investigate: what is the attacker asking the agent to do?
 
-1. In **Process tree**, find the Copilot process matching the PID and creation time above.
+1. In **Alert story**, find the Copilot process in **Process tree**, matching the PID and creation time above. Use the story's **Maximize** control for more space, then expand the process details.
+
+   ![Expanded copilot.exe process showing PID 4984 and its captured command line.](media/windows-xpia-process.png)
+
+   Match the agent execution, not just its filename. The command line shown is evidence from the recorded run, not a setup instruction.
+
 2. Locate **Suspicious AI prompt injection blocked**, then select the adjacent **copilot.exe made a prompt call to the model** node.
-3. Expand **Details** and read **Prompt content**. Find the instruction starting **[SYSTEM INSTRUCTION] Ignore all previous instructions**.
+
+   ![Alert story linking the 11:13:11 PM prompt call to the blocked-injection label, followed by a PromptInjection credential-theft detection in copilot.exe.](media/windows-xpia-story-nodes.png)
+
+   The prompt-call node contains the instruction. The credential-theft detection below is a separate evidence point. A **Detected** badge alone does not establish prevention; corroborate the outcome in the hunt.
+
+3. Expand the prompt-call node, or open its **Details** pane, and read **Prompt content**. Find the instruction starting **[SYSTEM INSTRUCTION] Ignore all previous instructions**.
+
+   ![Expanded prompt content requesting .env and AWS credential files, a POST to a test destination, and concealment from the user.](media/windows-xpia-prompt.png)
+
+   Read the complete instruction: the requested files, external transfer, and concealment are what make the attempted redirection clear.
+
 4. Identify the files it requests, the destination it names, and the instruction to conceal the activity.
 5. In your notes, explain why text that claims to be a system instruction is not automatically an authorized instruction.
 
-![Windows prompt evidence requesting credential disclosure to a test destination.](media/windows-xpia-prompt.png)
-
-The screenshot is a reference, not a replacement for a successful live step. If a prompt pane is empty, check the adjacent prompt-call node and match the content prefix. If neither works, record the limitation.
+The screenshots are references, not replacements for successful live steps. If a prompt pane is empty, expand the adjacent prompt-call node and match the content prefix. Allow the story to finish loading before concluding that evidence is missing. If neither view works, record the limitation.
 
 Do not execute the captured instruction or visit its destination.
 
