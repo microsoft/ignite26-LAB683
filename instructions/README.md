@@ -2,76 +2,92 @@
 
 An AI agent can turn a simple request into a sequence of file access, tool calls, and operating-system commands. As a security analyst, how do you tell useful automation from a security incident?
 
-You'll work in a preconfigured environment where the suspicious activity has already taken place. Follow the alerts, reconstruct the agents' actions, and explain how Defender responded.
+You'll work in a preconfigured environment where the suspicious activity has already taken place. Follow the alerts, reconstruct the agents' actions, and check how Defender responded.
 
 ## What threats are we investigating?
 
-AI agents can be redirected by malicious instructions, become misaligned with the user's task, or invoke an unsafe tool. The resulting activity can resemble a human attacker: discovering the network, accessing credentials, or executing suspicious scripts. A new way to trigger harmful behavior does not make familiar endpoint protections irrelevant.
+Malicious instructions can redirect an agent. The agent can also stray from the user's task or call an unsafe tool. You might then see network scans, attempts to access credentials, or suspicious scripts. Defender can detect these familiar attack patterns even when an agent starts them.
 
 Defender combines **agent context**, **AI-specific runtime protection**, and **endpoint behavioral protection**. Discovery helps identify the agent behind a process. Runtime protection can inspect supported agent interactions for malicious instructions. Endpoint controls can detect and stop suspicious behavior in the agent's processes and tools.
 
-These are three examples from broader, evolving detection coverage, not a complete detection catalog or one exercise per detection. For the wider picture, see [Microsoft Defender's AI security capabilities](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/defender-security-for-ai).
+The 75-minute core includes a discovery foundation and two Windows investigations. A third investigation on macOS is an optional bonus if time permits. For more examples, see [Microsoft Defender's AI security features](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/defender-security-for-ai).
 
-| Case | Reported concern | Protection lesson |
+| Case | Activity to investigate | What you'll learn |
 |---|---|---|
 | **1: Prompt injection on Windows** | Malicious content attempts to redirect an agent toward credential theft. | AI Agent Runtime Protection inspects supported agent interactions for malicious instructions. |
 | **2: Misalignment on Windows** | A document-search task leads to network scanning and attempted credential access. | Endpoint detections remain valuable when an agent performs familiar attacker behaviors. |
-| **3: Unsafe tool integration on macOS** | A campaign-summary request leads through a local MCP server to suspicious script execution. | Tool processes and their descendants remain subject to endpoint behavioral protection. |
+| **Bonus: Unsafe tool integration on macOS** | A campaign-summary request leads through a local MCP server to suspicious script execution. | Tool processes and their descendants remain subject to endpoint behavioral protection. |
 
-Treat these briefs as the concerns to investigate, not proof of the cause or outcome. Correlate the agent with the activity and establish what Defender actually detected or stopped.
+In each case, use the alert, process tree, and hunting results to investigate what the agent did and how Defender responded.
 
-### Understand the protection layers
+## Understand the protection layers
 
-The prompt-injection protection illustrated in scenario 1 requires [AI Agent Runtime Protection (preview)](https://learn.microsoft.com/en-us/defender-endpoint/ai-agent-runtime-protection-overview) to be enabled for a supported agent and inspection method. Audit and block modes have different outcomes; do not infer prevention from an alert title alone.
+Scenario 1 uses [AI Agent Runtime Protection (preview)](https://learn.microsoft.com/en-us/defender-endpoint/ai-agent-runtime-protection-overview). It must be turned on for a supported agent and inspection method. You'll follow the prompt-call and detection events, then check how Defender responded.
 
-That setting is not a master switch for all endpoint protection. Scenarios 2 and 3 illustrate additional detection and protection layers when suspicious activity reaches processes, scripts, and tools. Coverage and prevention still depend on the platform, configuration, and observed behavior; not every harmful agent action is guaranteed to be detected or blocked.
+**Note:** Enabling and configuring this protection is outside the scope of this lab. You'll investigate existing events without changing any settings.
 
-**No configuration changes are required in this lab.** Investigate the existing recordings, including the runtime-protection evidence in scenario 1. For deployment outside the lab, see [Set up AI agent runtime protection](https://learn.microsoft.com/en-us/defender-endpoint/configure-ai-agent-runtime-protection).
+In scenario 2 and the optional macOS bonus, you'll follow the agent's processes, scripts, and tools. See how endpoint protection detects network scans, attempts to access credentials, and other familiar attack patterns.
+
+For deployment outside the lab, see [Set up AI agent runtime protection](https://learn.microsoft.com/en-us/defender-endpoint/configure-ai-agent-runtime-protection).
 
 ## Your investigation path
 
-Portal investigation and Advanced Hunting are complementary skills. In each exercise, start with a question, inspect the portal evidence, run a focused hunt, and explain what you found. You will interpret and adjust supplied queries, not write KQL from scratch.
+Portal investigation and Advanced Hunting are complementary skills. In each exercise, start with a question, inspect the portal evidence, run a focused hunt, and check the findings. You will interpret and adjust supplied queries, not write KQL from scratch.
 
 | Activity | Time | Portal investigation | Advanced Hunting |
 |---|---|---|---|
 | [Sign in and get oriented](00-get-started.md#sign-in-to-the-lab) | 5 minutes | Open the assigned environment | Not required |
-| [Discover local agents](00-get-started.md#discover-the-local-agents) | 10 minutes | Inspect agent instances and their configuration | Compare inventory observations |
-| [Investigate Windows prompt injection](01-windows-xpia.md) | 15 minutes | Read the malicious prompt and follow the protection evidence | Corroborate the detection result |
-| [Investigate Windows agent misalignment](02-agent-misalignment.md) | 20 minutes | Compare the user's task with the agent's actions | Measure scanning and inspect credential-access protection |
-| [Investigate a macOS MCP execution chain](03-macos-runtime.md) | 20 minutes | Trace the task, tool process, and script activity | Reconstruct execution and inspect captured script content |
-| [Compare your findings](#compare-your-findings) | 5 minutes | Explain the three stories | Support each conclusion with evidence |
+| [Discover local agents](00-get-started.md#discover-local-ai-agents) | 10 minutes | Inspect agent instances and their configuration | Compare inventory observations |
+| [Investigate Windows prompt injection](01-windows-xpia.md) | 25 minutes | Read the malicious prompt and follow the protection evidence | Corroborate the detection result |
+| [Investigate Windows agent misalignment](02-agent-misalignment.md) | 30 minutes | Compare the user's task with the agent's actions | Measure scanning and inspect credential-access protection |
+| [Compare your core findings](#core-complete-compare-the-windows-cases) | 5 minutes | Review the two Windows stories | Compare the evidence behind each conclusion |
+| **Core total** | **75 minutes** | **Complete the foundation and both Windows cases** | **No macOS investigation required** |
 
-Optional [Agent 365 exploration](optional-agent-365.md) is outside the 75-minute path.
+**[Optional bonus: macOS MCP execution](03-macos-runtime.md), about 20 minutes.** Attempt it only if you finish early and have enough session time left. The bonus does not extend the lab timer. The time for each Windows case includes its reflection page.
 
 ## What you need
 
-- An assigned LAB683 environment and an individual lab account.
-- A browser with access to the lab's Microsoft Defender portal, local-agent inventory, alerts, device timelines, and Advanced Hunting.
-- The lab team's current scenario links if they have refreshed the recordings. Each exercise also explains how to locate the documented run by alert title and UTC time.
+- An assigned LAB683 environment with WIN1 and an individual lab account.
+- Access to the prepared Defender evidence and Advanced hunting.
+- The controlled Skillable instructions, which supply credentials, case links, and device IDs.
 
-Use the assigned lab account, not a personal or production tenant. A VM may host your browser, but you will not install agents, onboard endpoints, or generate attacks.
+These public pages preserve the lab's numbered sections, but use standard GitHub images and expandable details instead of Skillable-only markup. Copy the device ID supplied for each case into its query; the two Windows runs have different device IDs despite sharing a display name. Query windows are UTC. The explicit timeline entries assume the lab's Pacific local timezone; convert them if your VM uses another timezone.
+
+The evidence is historical. If a link or query no longer returns the documented run, ask the lab team for refreshed values rather than choosing an unrelated alert. Match the replacement device, UTC window, PID, and creation time together. The inventory query uses a rolling 30-day window; its observation time is not a process start time. A result cap is not a complete inventory.
 
 ## Work safely in the shared environment
 
-Read existing evidence only. Do not assign, classify, resolve, or otherwise edit incidents or alerts. Do not isolate devices, run Live Response, submit files for analysis, change policies, or execute commands found in attack evidence.
-
-Keep credentials and sensitive identifiers out of screenshots and shared notes. The public instructions intentionally omit tenant IDs and direct tenant-specific links.
-
-## Compare your findings
-
-Complete this table in your own notes:
-
-| Question | Windows prompt injection | Windows misalignment | macOS MCP activity |
-|---|---|---|---|
-| What was the authorized task or attempted redirection? | | | |
-| What did the agent actually do? | | | |
-| Which portal evidence supports your explanation? | | | |
-| What did your hunt add? | | | |
-| What did Defender detect or prevent? What remains unknown? | | | |
-| Which protection layer contributed, and what did agent context add? | | | |
-
-Explain one conclusion you could not safely draw from an alert title alone. Why can familiar endpoint protections still help when an agent, rather than a human attacker, initiates the activity? Then sign out of the lab account and end your lab session.
+Read existing evidence only. Do not assign, classify, resolve, or otherwise edit incidents or alerts. Do not isolate devices, run Live Response, submit files for analysis, change policies, or execute commands found in attack evidence. Keep credentials, account details, and private identifiers out of screenshots and shared notes.
 
 ## Start the lab
 
 [Sign in and discover the agents](00-get-started.md)
+
+## Core complete: Compare the Windows cases
+
+You've finished the discovery foundation and both core investigations. Allow 5 minutes to compare their findings. You do not need to write a summary or complete the macOS bonus.
+
+How did each agent's activity create risk? Which evidence establishes Defender's response, and which questions remain open?
+
+<details>
+<summary>Show the two-case comparison</summary>
+
+| Question | Windows prompt injection | Windows misalignment |
+|---|---|---|
+| What was the task or attempted redirection? | Embedded instructions requested credential files, external transfer, and concealment. | The employee asked for the latest sales documents. |
+| What did the agent do? | Copilot encountered the malicious prompt; the requested theft is not established. | Copilot launched PowerShell branches for searching, scanning, and credential-related activity. |
+| What did portal evidence show? | Copilot's prompt-call node, the blocked-injection story, and detection details. | The user request, Copilot-to-PowerShell ancestry, and the LSASS prevention record. |
+| What did hunting add? | A `netpromptstream` prompt-injection detection reporting remediation. | Connections to ports 22, 139, and 445, with mostly failures and one port-22 success; LSASS-related detection evidence. |
+| What did Defender prevent? | The injection was blocked and remediation reported. | The LSASS-related attempt was blocked; the protection record reports quarantine and Success. |
+| What remains unknown? | Credential-file access or transfer is not established. | Connection success does not prove a login. Successful credential theft is not established. |
+| Which protection layer contributed? | AI Agent Runtime Protection inspected the prompt; agent context tied it to Copilot. | Endpoint protection detected the credential-access attempt; process ancestry tied it to Copilot. |
+
+Agent context connects suspicious activity to the employee's agent and task. Use the underlying evidence to distinguish a detection, a successful connection, and a confirmed prevention.
+
+</details>
+
+### Choose where to finish
+
+**Finish the core lab here:** In WIN1, sign out of the lab's Defender account. Return to Skillable and end this lab session. Do not sign out of your host browser profile or close unrelated windows.
+
+**Continue to the bonus:** If about 20 minutes remain on your session timer, stay signed in and open the [optional macOS investigation](03-macos-runtime.md). The macOS investigation is optional and does not extend the timer. Nothing in the bonus is required to complete the core lab.

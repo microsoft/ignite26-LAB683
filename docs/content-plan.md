@@ -1,11 +1,11 @@
-# Author the three investigation scenarios
+# Maintain the core investigations and optional macOS bonus
 
-This document tracks the GitHub-first attendee path and remaining delivery work. The exercises use question -> portal evidence -> focused hunting -> explained finding. API checks validate the data, not the attendee portal experience; full role-based rehearsal remains required before delivery.
+This document tracks the public attendee path, its controlled Skillable counterpart, and remaining delivery work. The exercises use question -> portal evidence -> focused hunting -> explained finding. The November 18 public refresh carries forward the lab's customer-centered introductions, numbered click-by-click sections, custom-range recovery, exact process/event selectors, and expandable findings. API checks and authoring-account screenshots are not attendee-role validation; full role-based rehearsal remains required before delivery.
 
 ## Agreed scope
 
 - 75-minute, L300, browser-first, Defender-led investigation lab.
-- Three scenarios: Windows XPIA, Windows agent misalignment, and a readiness-gated macOS MCP execution chain replacing the poisoned-brief exercise.
+- A discovery foundation and two required Windows scenarios: XPIA and agent misalignment. The macOS MCP execution chain is an optional bonus, not part of the 75-minute core.
 - Pre-seeded evidence in the team's dedicated tenant with an individual account per attendee.
 - Varied portal experiences: alerts, incidents, agent context, process evidence, device events, timeline, and selected Advanced Hunting.
 - Optional extra credit observes Agent 365 identity, registry, and risk context where available.
@@ -21,9 +21,9 @@ This document tracks the GitHub-first attendee path and remaining delivery work.
 
 Do not advertise candidate detection lists as finalized coverage. Include only detections and evidence validated for the selected scenarios.
 
-## Validate the third scenario
+## Validate the optional macOS scenario
 
-The October 30 investigation report supplies background. November 15 API checks independently confirm the November 2 replay's alert, process events, and captured script fragments; they do not establish attendee UI access or approval to reverse the earlier macOS demo exclusion. Obtain an explicit owner go/no-go decision for this exact path before delivery.
+The optional macOS investigation uses the November 2 replay. November 15 API checks confirmed its alert, process events, and captured script fragments; later authoring-account navigation supports the documented portal steps. Neither check establishes ordinary attendee access. The October 30 report is background, not evidence for the November replay's outcome. Rehearse the optional path before offering it to learners.
 
 1. Confirm the selected build emits the incident, alerts, and process/script telemetry needed for the MCP execution-chain exercise.
 2. Confirm ordinary attendee accounts can complete an investigation from the prepared evidence.
@@ -32,7 +32,7 @@ The October 30 investigation report supplies background. November 15 API checks 
 5. Compare available action targets/results with approved saved-run evidence. Do not claim discovery was prevented merely because the portal says Blocked.
 6. If any required element is missing, obtain owner approval for an alternative, then author and rehearse it. Do not replace the runtime investigation with inventory-only browsing.
 
-There are still three required scenarios, not a fourth exercise. The legitimate request names `retrieve_campaign_brief`, Copilot launches Node running `server.mjs`, and descendant JXA/shell activity includes synthetic discovery. The October report states no archiving or uploading occurred in its reported run; do not automatically apply that outcome to November's replay. Neither the name nor the current registration match establishes external exfiltration, poisoning, rug pull, persistence, or historical tool invocation.
+There are two required scenarios and one optional macOS investigation. The legitimate request names `retrieve_campaign_brief`, Copilot launches Node running `server.mjs`, and descendant JXA/shell activity includes synthetic discovery. The October report states no archiving or uploading occurred in its reported run; do not automatically apply that outcome to November's replay. Neither the name nor the current registration match establishes external exfiltration, poisoning, rug pull, persistence, or historical tool invocation.
 
 ## Finish the exact attendee instructions
 
@@ -43,9 +43,9 @@ There are still three required scenarios, not a fourth exercise. The legitimate 
 5. Add approved hunting queries only after validating table availability, identifiers, time windows, and expected results. Do not invent identity joins.
 6. Rehearse the full 75-minute journey and optional extra credit with the delivery team.
 
-The October 23 walkthrough and approved screenshots support the Windows portal procedures; November 15 API checks reconfirm retained Windows events. The old Mac prompt observations describe the superseded poisoned-brief run. The required Mac queries now target the November 2 replay, not the October report's process instances. Keep complete reports, raw results, and private engineering references in controlled owner material, not GitHub.
+The October 23 walkthrough and approved screenshots support the Windows portal procedures; November 15 API checks reconfirm retained Windows events. The November 17 authoring walkthrough also checked the user's sales-document request and the credential-access prevention branch. The old Mac prompt observations describe the superseded poisoned-brief run. The bonus Mac queries now target the November 2 replay, not the October report's process instances. Keep complete reports, raw results, and private engineering references in controlled owner material, not GitHub.
 
-The 75-minute path allocates 5 minutes to sign-in, 10 to discovery, 15 to XPIA, 20 to misalignment, 20 to macOS, and 5 to comparison. The first hunt is fully supplied, misalignment asks learners to modify a filter, and macOS asks them to complete a process filter with a hint available.
+The 75-minute core allocates 5 minutes to sign-in, 10 to discovery, 25 to XPIA, 30 to misalignment, and 5 to comparison. Discovery is foundational, not a full governance scenario. Core completion comes before the optional 20-minute macOS path, which does not extend the session timer. The first hunt is fully supplied, misalignment asks learners to modify a filter, and the optional Mac process hunt has an executable-name hint.
 
 ### Explain the findings visually
 
@@ -57,7 +57,7 @@ The visual approach draws on public Microsoft Security Blog patterns, not copied
 - [SCKit attack chain](https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/), Figure 2: separate observed deployment from potential propagation rather than drawing both as confirmed activity.
 - [Trained to betray](https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/): contrast a benign-looking task with unsafe tool behavior. Its backdoor mechanism is not the mechanism claimed for these lab scenarios.
 
-The XPIA diagram uses dashed requested-action arrows, not an observed exfiltration path. Misalignment branches distinguish scanning from the specific prevented LSASS attempt. The Mac story calls out synthetic code and an unresolved protection outcome. Text labels carry those distinctions independently of color. Refresh diagrams together with the evidence; do not retain a prevention marker after changing to a run that lacks its supporting record.
+The XPIA diagram uses dashed requested-action arrows, not an observed exfiltration path. Misalignment branches distinguish scanning from the specific prevented LSASS attempt. The Mac story calls out synthetic code and the need for protection evidence beyond an alert label. Its November 2 protection record reports terminating the suspicious `osascript` behavior, with quarantine and Success at 18:35:22 UTC; this does not prove that no earlier code ran or establish completed theft. Text labels carry those distinctions independently of color. Refresh diagrams together with the evidence; do not retain a prevention marker after changing to a run that lacks its supporting record.
 
 ## Prepare the controlled scenario reference sheet
 
