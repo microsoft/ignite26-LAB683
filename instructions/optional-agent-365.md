@@ -17,7 +17,7 @@ Extend a completed investigation by observing available Microsoft Agent 365 elem
 
 ## Prerequisites
 
-- Complete the three required investigations.
+- Complete the discovery foundation and both required Windows investigations. The macOS investigation is optional.
 - Use only the scenario and observational pivots approved by the lab team.
 - Allow additional time outside the required 75 minutes.
 

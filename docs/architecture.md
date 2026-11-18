@@ -11,7 +11,7 @@ This delivery model supersedes the earlier per-learner Windows VM and live-attac
 | Skillable experience | Delivers instructions, browser access, and intended secure account assignment | Validate account delivery, sign-in, session cleanup, and capacity |
 | Dedicated lab tenant | Hosts the shared investigation experience | Prepare access, permissions, evidence retention, and refresh |
 | Prepared Windows endpoints | Supply XPIA and misalignment evidence | Generate approved evidence before delivery |
-| Prepared macOS endpoint | Supplies the replacement MCP execution-chain investigation, subject to owner approval | Validate the exact build, process/script evidence, configuration scope, and portal journey |
+| Prepared macOS endpoint | Supplies the optional bonus MCP execution-chain investigation | Validate the exact build, process/script evidence, configuration scope, and portal journey |
 | Microsoft Defender | Presents alerts, incidents, device events, timelines, agent context, and hunting | Verify each scenario with an ordinary attendee account |
 | Agent 365 context | Adds optional identity, registry, and risk observations | Validate each supported pivot without changing policy |
 | GitHub repository | Holds reusable instructions and approved sanitized assets | Keep credentials, private identifiers, and raw telemetry out of commits |
@@ -22,12 +22,12 @@ This delivery model supersedes the earlier per-learner Windows VM and live-attac
 2. Discover local agent instances in the portal and compare their inventory observations with Advanced Hunting.
 3. Investigate Windows XPIA in the portal and corroborate the protection evidence with a supplied hunt.
 4. Reconstruct Windows misalignment, then measure scanning and inspect credential-access protection with focused hunts.
-5. Trace the macOS MCP execution chain and inspect captured script content, subject to the readiness decision.
-6. Compare evidence and confidence across the scenarios.
-7. Optionally observe available Agent 365 investigation context.
-8. Sign out and end the lab session.
+5. Compare the two Windows cases and finish the 75-minute core.
+6. If about 20 minutes remain on the existing session timer, optionally trace the macOS MCP execution chain and inspect captured script content.
+7. Optionally observe available Agent 365 investigation context outside the core path.
+8. Sign out and end the lab session. No bonus work is required for core completion.
 
-Every investigation follows question -> portal evidence -> focused hunt -> explained finding. Query scaffolding decreases across the three scenarios. The required path is Defender-led. Agent 365 extra credit does not require a separate administrative configuration exercise.
+Every investigation follows question -> portal evidence -> focused hunt -> explained finding. Supplied queries and expandable findings support each case; the scan exercise asks learners to add and remove one filter. Discovery is a foundation, not a governance scenario. The required path is Defender-led. Agent 365 extra credit does not require a separate administrative configuration exercise.
 
 ## Shared-state boundaries
 

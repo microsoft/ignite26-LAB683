@@ -11,17 +11,17 @@
 
 AI agents can read files, run commands, and connect to tools. What happens when they follow malicious instructions or act beyond the user's intent?
 
-Step into the role of a security analyst investigating AI agent activity on Windows and macOS. Discover the agents, follow the alert evidence, and use Advanced Hunting to answer questions the alert alone cannot resolve. Investigate an attempted credential theft through prompt injection, a document-search agent that starts scanning the network, and suspicious code execution behind a local MCP tool.
+Step into the role of a security analyst investigating AI agent activity. Discover the agents, follow the alert evidence, and use Advanced Hunting to answer questions the alert alone cannot resolve. The core lab covers an attempted credential theft through prompt injection and a document-search agent that starts scanning the network. An optional macOS bonus follows suspicious code execution behind a local MCP tool.
 
 You'll work in a preconfigured environment where the suspicious activity has already taken place. Your job is to follow the alerts, reconstruct the agents' actions, and determine what the evidence says about Defender's response.
 
 #### Lab delivery model
 
-This is a 75-minute, L300, browser-first investigation lab. Use an individually assigned account in the lab environment. You do not need a Mac, a local agent installation, or API credentials.
+This is a 75-minute, L300, browser-first investigation lab: 5 minutes for sign-in, 10 for discovery, 25 for Windows prompt injection, 30 for Windows misalignment, and 5 for comparison. The macOS investigation is an optional 20-minute bonus only if your session timer permits it; it does not extend the timer. Use an individually assigned account in the lab environment. You do not need a Mac, a local agent installation, or API credentials.
 
 No attendee endpoint provisioning, local agent installation, live attack generation, or Sentinel setup is required. Response actions, including isolation, remediation, Live Response, and policy changes, are out of scope. Optional extra credit observes Agent 365 elements of the investigation; it is not required to complete the lab.
 
-The [attendee path](instructions/README.md) combines portal investigation and focused hunting in each scenario: **ask a question, inspect the evidence, hunt for supporting activity, and explain your findings**. Owners can find access, evidence-refresh, and rehearsal requirements in the [delivery plan](docs/content-plan.md).
+The [attendee path](instructions/README.md) combines click-by-click portal investigation and focused hunting: **ask a question, inspect the evidence, hunt for supporting activity, and check your findings**. Expand the findings and troubleshooting boxes when needed; no written answers are required. Credentials and prepared case links remain in the controlled Skillable instructions, not this public repository. Owners can find access, evidence-refresh, and rehearsal requirements in the [delivery plan](docs/content-plan.md).
 
 ### 🚀 Getting started
 
@@ -56,15 +56,15 @@ If you're learning at your own pace:
 By the end of this session, you will be able to:
 
 - Discover local AI agents and distinguish their configuration from their observed activity
-- Investigate Windows and macOS agent threats using alerts, prompt or script evidence, and process timelines
+- Investigate Windows agent threats using alerts, prompt evidence, and process timelines, with an optional macOS tool-chain investigation
 - Use Advanced Hunting to measure suspicious behavior and explain what was detected, executed, or prevented
 
 ### 💻 Technologies used
 
-- Microsoft Defender for Endpoint
-- Microsoft Defender portal and Advanced Hunting
-- Windows and macOS local AI agent evidence
-- Microsoft Agent 365 (optional observational extra credit)
+- [Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-endpoint)
+- [Microsoft Defender portal](https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender-portal) and [Advanced Hunting](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-overview)
+- [Windows and macOS local AI agent evidence](https://learn.microsoft.com/en-us/defender-endpoint/local-agent-discovery-overview)
+- [Microsoft Agent 365](https://learn.microsoft.com/en-us/defender-xdr/security-for-ai/transition-agent-security-to-agent-365) (optional observational extra credit)
 
 ### 📚 Continue your learning
 
